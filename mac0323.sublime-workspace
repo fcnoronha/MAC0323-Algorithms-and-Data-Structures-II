@@ -1,0 +1,903 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"number",
+				"numbers"
+			],
+			[
+				"pri",
+				"println"
+			],
+			[
+				"ts",
+				"tSort"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"fr",
+				"freq"
+			],
+			[
+				"maxn",
+				"MAXN"
+			],
+			[
+				"max",
+				"MAXN"
+			],
+			[
+				"man",
+				"MAXN"
+			],
+			[
+				"q",
+				"qry"
+			],
+			[
+				"MAX",
+				"MAXN\t(SQRTdecomposition.cpp)"
+			],
+			[
+				"str",
+				"struct\tstruct"
+			],
+			[
+				"con",
+				"continue\t(Dijkstra.cpp)"
+			],
+			[
+				"cot",
+				"continue"
+			],
+			[
+				"ret",
+				"return\t(ternarySearch.cpp)"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"is",
+				"isEnd"
+			],
+			[
+				"up",
+				"upper_bound\t(lis.cpp)"
+			],
+			[
+				"tre",
+				"true"
+			],
+			[
+				"sie",
+				"size"
+			],
+			[
+				"aux",
+				"auxi"
+			],
+			[
+				"ax",
+				"auxi"
+			],
+			[
+				"inv",
+				"invmod\t(fastExp.cpp)"
+			],
+			[
+				"priem",
+				"primes"
+			],
+			[
+				"prime",
+				"primes"
+			],
+			[
+				"amt",
+				"amtp"
+			],
+			[
+				"am",
+				"amtp"
+			],
+			[
+				"ed",
+				"endl"
+			],
+			[
+				"do",
+				"double"
+			],
+			[
+				"power",
+				"powers"
+			],
+			[
+				"lowe",
+				"lower_bound\t(lis.cpp)"
+			],
+			[
+				"gam",
+				"gamb"
+			],
+			[
+				"nu",
+				"numa"
+			],
+			[
+				"IN",
+				"INT_MAX"
+			],
+			[
+				"pos",
+				"possible"
+			],
+			[
+				"i",
+				"int"
+			],
+			[
+				"min",
+				"minl"
+			],
+			[
+				"co",
+				"continue\t(a.cpp)"
+			],
+			[
+				"INT",
+				"INT_MIN"
+			],
+			[
+				"l",
+				"limits"
+			],
+			[
+				"qe",
+				"query"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"st",
+				"state"
+			],
+			[
+				"ci",
+				"child"
+			],
+			[
+				"ma",
+				"MAXL"
+			],
+			[
+				"mx",
+				"MAXL"
+			],
+			[
+				"ind",
+				"invmod"
+			],
+			[
+				"vi",
+				"visited"
+			],
+			[
+				"Max",
+				"MAXN"
+			],
+			[
+				"def",
+				"define"
+			],
+			[
+				"ans",
+				"ansv"
+			],
+			[
+				"end",
+				"endl"
+			],
+			[
+				"gli",
+				"glis1"
+			],
+			[
+				"glis",
+				"glis2"
+			],
+			[
+				"begi",
+				"begin"
+			],
+			[
+				"lo",
+				"lower_bound"
+			],
+			[
+				"get",
+				"getLcs"
+			],
+			[
+				"be",
+				"begin\t(ogros.cpp)"
+			],
+			[
+				"bina",
+				"binary_search\t(ogros.cpp)"
+			],
+			[
+				"u",
+				"update"
+			],
+			[
+				"que",
+				"query"
+			],
+			[
+				"LO",
+				"LLONG_MAX"
+			],
+			[
+				"can",
+				"canrep"
+			],
+			[
+				"bin",
+				"binary_search"
+			],
+			[
+				"e",
+				"endl"
+			],
+			[
+				"cnt",
+				"cntc"
+			],
+			[
+				"m",
+				"map\tstd::map"
+			],
+			[
+				"a",
+				"aux"
+			],
+			[
+				"au",
+				"aux2"
+			],
+			[
+				"fa",
+				"fastexp"
+			],
+			[
+				"stru",
+				"strutop"
+			],
+			[
+				"com",
+				"comb"
+			],
+			[
+				"jo",
+				"jogando"
+			],
+			[
+				"poss",
+				"possível\t(acoes.c)"
+			],
+			[
+				"destroi",
+				"destroier"
+			],
+			[
+				"final",
+				"finalizaJogo"
+			],
+			[
+				"visi",
+				"visitadas\t(game.c)"
+			],
+			[
+				"dir",
+				"direita"
+			],
+			[
+				"diret",
+				"direita"
+			],
+			[
+				"dire",
+				"direcao"
+			],
+			[
+				"sla",
+				"salaAtual"
+			],
+			[
+				"ver",
+				"verbo"
+			],
+			[
+				"fun",
+				"funGlobais"
+			],
+			[
+				"bus",
+				"buscaElol"
+			],
+			[
+				"bu",
+				"buscaElol"
+			],
+			[
+				"tes",
+				"testador6000\t(game.h)"
+			],
+			[
+				"buscaS",
+				"buscaSin\t(hashTable.c)"
+			],
+			[
+				"reu",
+				"return\t(ListaValores.c)"
+			],
+			[
+				"des",
+				"destroiL"
+			],
+			[
+				"ien",
+				"identidade"
+			],
+			[
+				"dest",
+				"destroiL\t(ListaValores.c)"
+			],
+			[
+				"has",
+				"hashTable.o"
+			],
+			[
+				"lis",
+				"ListaValores"
+			],
+			[
+				"game",
+				"game.h\t(makefile)"
+			],
+			[
+				"escree",
+				"escrever"
+			],
+			[
+				"El",
+				"EloL"
+			],
+			[
+				"cri",
+				"criaL"
+			],
+			[
+				"ru",
+				"return"
+			],
+			[
+				"Ele",
+				"Elemento"
+			],
+			[
+				"L",
+				"ListaValores.h\t(game.c)"
+			],
+			[
+				"retira",
+				"retiraElol\t(ListaValores.c)"
+			],
+			[
+				"sala",
+				"salaAtual"
+			],
+			[
+				"reut",
+				"return\t(hashTable.c)"
+			],
+			[
+				"tm",
+				"tamanho"
+			],
+			[
+				"Li",
+				"Lista\t(ListaValores.c)"
+			],
+			[
+				"Elo",
+				"EloL"
+			],
+			[
+				"isere",
+				"insereSin\t(hashTable.c)"
+			],
+			[
+				"cria",
+				"criaS\t(hashTable.c)"
+			],
+			[
+				"Tab",
+				"TabSim\t(hashTable.c)"
+			],
+			[
+				"ele",
+				"elemento\t(hashTable.c)"
+			],
+			[
+				"sin",
+				"sinonimo\t(Estruturas.h)"
+			],
+			[
+				"in",
+				"insert"
+			],
+			[
+				"elem",
+				"element"
+			],
+			[
+				"pr",
+				"Print"
+			],
+			[
+				"r",
+				"root"
+			],
+			[
+				"pre",
+				"preOrder"
+			],
+			[
+				"node",
+				"nodeCnt"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"s",
+				"strong"
+			],
+			[
+				"docum",
+				"document\t(odometer.js)"
+			],
+			[
+				"odometer-the",
+				"odometer-theme-default\t(odometer-theme-default.css)"
+			],
+			[
+				"ba",
+				"background-image\tproperty"
+			],
+			[
+				"IDE",
+				"identidade"
+			],
+			[
+				"PR",
+				"printf"
+			],
+			[
+				"Lis",
+				"Lista"
+			],
+			[
+				"te",
+				"testador3000"
+			],
+			[
+				"o",
+				"objects"
+			],
+			[
+				"ini",
+				"ini1"
+			],
+			[
+				"p",
+				"push_back"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				"Syntax Check"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"",
+				"Snippet: If Condition"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"markdownpre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdownprevi",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"markdwo",
+				"Preferences: MarkdownEditing Settings – Default"
+			],
+			[
+				"pa",
+				"Package Control: List Packages"
+			],
+			[
+				"paco",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 136.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323"
+	],
+	"file_history":
+	[
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP01/Combinacao.java",
+		"/media/felipe/Geral/Faculdade/git guide.txt",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/README.md",
+		"/home/felipe/algs4.jar",
+		"/home/felipe/.bashrc",
+		"/media/felipe/Geral/Faculdade/3 semestre/EP01/Combinacao.java",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Teste.java",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/QuickBest.java",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Add.java",
+		"/media/felipe/Geral/t.java",
+		"/media/felipe/Geral/QuickBest.java",
+		"/home/felipe/Área de Trabalho/ideaIU-2018.3.3/idea-IU-183.5153.38/Install-Linux-tar.txt",
+		"/media/felipe/Geral/MaratonUSP/ToDo/t.txt",
+		"/media/felipe/Geral/MaratonUSP/ToDo/dominos.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/t.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/d.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/e.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/b.cpp",
+		"/media/felipe/Geral/MaratonUSP/Spoj/dquery.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/dquery.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/rangeSumQuery.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/marbles.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/liegesLegendre.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/playingStones.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/mcoins.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/c.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/a.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/f.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/galaticTaxes.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/trickOrTreat.cpp",
+		"/media/felipe/Geral/MaratonUSP/Spoj/kopc12a.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/kopc12a.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/vityaStrangeLesson.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/template.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/vasilyMultiset.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/goodSubstrings.cpp",
+		"/media/felipe/Geral/MaratonUSP/ICPC A/flyingFredericton.cpp",
+		"/home/felipe/Downloads/Telegram Desktop/fredericton (2).cpp",
+		"/home/felipe/Downloads/Telegram Desktop/fredericton.cpp",
+		"/media/felipe/Geral/MaratonUSP/Spoj/phonelst.cpp",
+		"/media/felipe/Geral/MaratonUSP/ICPC A/phoneList.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/phoneList.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/phonelst.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/dict.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/beautifulNumbers.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/biorhythms.cpp",
+		"/media/felipe/Geral/MaratonUSP/ICPC A/almostPrimes.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/elargeGCD.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/diofanto.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/estrela.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/calcadmg.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/primeGenerator.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/almostPrimes.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/instantBigBang.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/touristGuide.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/flyingFredericton.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/n-dimensional.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/sereja.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/sumTree.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/vaBooks.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codforces/vasyaIVertices.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/kgss.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/runningPeni.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/acordesIntergalaticos.cpp",
+		"/home/felipe/.cache/.fr-PrZTbH/solutions/G/yan-ac.cpp",
+		"/media/felipe/Geral/MaratonUSP/Treinos ArreBento/SubRegional 2016/g.cpp",
+		"/media/felipe/Geral/MaratonUSP/Treinos ArreBento/simulado bixos20-04-18/g.cpp",
+		"/media/felipe/Geral/MaratonUSP/Treinos ArreBento/Simulado 2017/g.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/makotoBlackboard.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/horribleQueries.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/danilPartJob.cpp",
+		"/media/felipe/Geral/MaratonUSP/ICPC A/intervalProduct.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/rpln.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/qtree2.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codcad/jaspion.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/anotherShortestPath.cpp",
+		"/media/felipe/Geral/MaratonUSP/Codcad/antsColony.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/distanceInTree.cpp",
+		"/home/felipe/Área de Trabalho/foto cel/untitled",
+		"/media/felipe/Geral/MaratonUSP/ToDo/subsequences.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/lca.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/antsColony.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/matchMatch.cpp",
+		"/home/felipe/Área de Trabalho/testset_2010/ants.sol",
+		"/home/felipe/Área de Trabalho/testset_2010/ants.in",
+		"/media/felipe/Geral/MaratonUSP/ToDo/balancedTernaryString.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/arrayKColoring.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/intSeqDiv.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/intSeqDiv (cópia).cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/cuttingOut.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/smartBank.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/workPope.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/recursionFever.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/letters.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/notOneMoreLcs.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/lAlmostIncreasing.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/gCommonAncestor.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/pizza.cpp",
+		"/home/felipe/.cache/.fr-AXd8tE/test2/out1",
+		"/home/felipe/.cache/.fr-V6XkHc/test2/in1",
+		"/home/felipe/.cache/.fr-uuXxja/test1/in3",
+		"/home/felipe/.cache/.fr-gkJI1o/test1/in1",
+		"/media/felipe/Geral/MaratonUSP/ToDo/hall.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/impossibleChange.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/canGiveChange.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/giveChange.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/apology.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/perfectBody.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/archery.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/crossedLines.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/aprendiMS.cpp",
+		"/media/felipe/Geral/MaratonUSP/Spoj/desculpa.cpp",
+		"/media/felipe/Geral/MaratonUSP/Caderno/Misc/fastExp.cpp",
+		"/media/felipe/Geral/MaratonUSP/Caderno/Misc/primes.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/somaCasas.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/ogros.cpp",
+		"/media/felipe/Geral/Faculdade/2 semestre/mac121/mergeSort.c",
+		"/media/felipe/Geral/MaratonUSP/ToDo/trocoFacil.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/fechadura.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/dentista.cpp",
+		"/media/felipe/Geral/MaratonUSP/Spoj/kmedian.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/oracleAlexandria.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/riemannStrikes.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/helpRiemann.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/snpmqudm2.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/gincana.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/orbitas.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/fracSum.cpp"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/media/felipe/Geral/Faculdade/3 semestre/MAC0323"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 27.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 28.0
+	},
+	"pinned_build_system": "Packages/User/markdown.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
