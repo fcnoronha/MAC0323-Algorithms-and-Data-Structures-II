@@ -83,8 +83,13 @@ public class Combinacao {
     		if (opcao == 1) return; // Retornando caso a opcao seja 0
 
     		// Imprimo a combinação
-    		for (int i = 0; i < k; i++)
-    			StdOut.printf("%d " ,numbers[i]);
+    		for (int i = 0; i < k; i++){
+    			if (i == k-1){
+                    StdOut.printf("%d" ,numbers[i]);
+                    continue;
+                }
+                StdOut.printf("%d " ,numbers[i]);
+            }
     		StdOut.println();
     		
     		return;

@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.*;
 
+import java.util.Iterator;
+
 public class Stack<Item> implements Iterable<Item>{
 
 	private Item[] a;
@@ -40,12 +42,62 @@ public class Stack<Item> implements Iterable<Item>{
 		// Pop item in the stack
 		Item item = a[n-1];
 		a[n-1] = null; // avoid loitering
+		// Loitering é a reutilização de memoria pelo Java
 		n -= 1;
 
 		// Keeping at least 1/4 of the stack occupied
-		if (n > 0 && n < a.length/2)
+		if (n > 0 && n == a.length/2)
 			resize(a.length/2);
 
 		return item;
+	}
+
+	public Iterator<Item> iterator(){
+		return new RerverseArrayIterator();
+	}
+
+	private class RerverseArrayIterator implements Iterator<Item>{
+		private int t = n;
+
+		public boolean hasNext(){
+			return t > 0;
+		}
+
+		public Item next(){
+			return a[t--];
+		}
+
+		public void remove(){
+			throw new UnsupportedOperationException();
+		}
+	}
+
+	public static void main(String[] args){
+		// Using stuff
+
+		Stack<String> s = new Stack<String>();
+
+		while (!StdIn.isEmpty()){
+			String item = StdIn.readString();
+			if (!item.equals("-")) s.push(item);
+			else if (!s.isEmpty()) StdOut.println(s.pop() + " ");
+		}
+
+		StdOut.println("\nConteúdo usando while (...): ");
+		StdOut.println("----");
+		Iterator<String> it = s.iterator();
+		
+		while (it.hasNext()) 
+			StdOut.println(it.next());
+		
+		StdOut.println("----\n");
+		StdOut.println("\nConteúdo usando foreach statement: ");
+		StdOut.println("----");
+
+		for (String bla: s) 
+			StdOut.println(bla);
+		
+		StdOut.println("----\n");
+		StdOut.println("(" + s.size() + " left on stack)");
 	}
 }
