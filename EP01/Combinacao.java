@@ -75,12 +75,17 @@ public class Combinacao {
 
     private static int numbers[]; // Vai armazenar a ultima combinação impressa
 
-    private static void gerador(int ind, int atual, int k, int n){
+    private static void combinacao(int n, int k, int ind, int atual){
+
+        // ind - A posição que eu estou iterando da combinação
+        // atual - Numero correspondente a posiçao anterior da combinação
 
     	if (ind == k){
+            // Caso eu esteja na posição após o ultimo digito da combinação, ou
+            // seja, eu terminei de montar uma combinação
 
     		count++; // Incrementando contador
-    		if (opcao == 1) return; // Retornando caso a opcao seja 0
+    		if (opcao == 1) return; // Parando aqui caso a opcao seja 0
 
     		// Imprimo a combinação
     		for (int i = 0; i < k; i++){
@@ -98,7 +103,7 @@ public class Combinacao {
     	for (int a = atual; a <= n; a++){
     		// Percorro todos os numeros possiveis no intervalo [a, n]
     		numbers[ind] = a;
-    		gerador(ind+1, a+1, k, n); // Continuando a geração
+    		combinacao(n, k, ind+1, a+1); // Continuando a geração
     	}
     }
 
@@ -106,7 +111,7 @@ public class Combinacao {
 
     	numbers = new int[k]; // Inicializando esse vetor com k posições
 
-    	gerador(0, 1, k, n); // Chamando a função que gera as combinaçẽs
+    	combinacao(n, k, 0, 1); // Chamando a função que gera as combinaçẽs
     }
     
     public static void main(String[] args) {
