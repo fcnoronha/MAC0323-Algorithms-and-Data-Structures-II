@@ -100,8 +100,8 @@ public class Combinacao {
     		return;
     	}
 
-    	for (int a = atual; a <= n; a++){
-    		// Percorro todos os numeros possiveis no intervalo [a, n]
+    	for (int a = atual; a <= n-(k-ind-1); a++){
+    		// Percorro todos os numeros possiveis no intervalo [a, n-(k-ind-1)]
     		numbers[ind] = a;
     		combinacao(n, k, ind+1, a+1); // Continuando a geração
     	}
