@@ -25,14 +25,22 @@
 
 	1º: O algoritmo para a geração das proximas permutações foi ensinado
 	por um tutorial na plataforma GeeksForGeeks, com o link a seguir:
-	(https://www.geeksforgeeks.org/lexicographic-permutations-of-string/).
+	(geeksforgeeks.org/lexicographic-permutations-of-string/).
 		Aprendi este algoritmo estudando topicos á respeito de strings e 
 	permutações, para o grupo de extensão ao qual faço parte, o MaratonUSP.
 
-	2º: A estruta base da função main() do programa toma como base o 
+	2º: As funções cntCrescente() e cntDecrescente() são inspiradas no
+	algoritmo de LIS (Longest Increasing subsequence), que é muito usado
+	em programação competitiva.
+	
+	3º: A estruta base da função main() do programa toma como base o 
 	esqueleto disponibilizado para a realização do EP1.
 
 	Se for o caso, descreva a seguir 'bugs' e limitações do seu programa:
+
+	1º: A analise de complexidade de meu algoritmo mostra uma complexidade
+	em torno de O((n^2)*n!), logo, a partir de um n = 10, a execução do codigo
+	começa a demorar muito tempo.
 
 ****************************************************************/
 
@@ -63,11 +71,12 @@
 
 import edu.princeton.cs.algs4.StdOut;
 
-/*
-	incluir referencia sobre uso de partes do ep1 e do uso de geeksforgeeks como fonte
-*/
-
 public class STPerms {
+
+	// Neste EP, ao inves de utilizar um String para representar as permutações, 
+	// usei uma array de inteiros, deixando o codigo mais claro e simples. Ao final, 
+	// quando necessario realizar a impressão de tal array, realizo a conversão de inteiro 
+	// para char.
 
 	private static int cnt = 0; // Contador para quantidade de permutações (s, t)
 	private static int op = 0; // 0 == permutações / 1 == quantidade / 2 == per+qtd
@@ -88,49 +97,50 @@ public class STPerms {
 	}
 
 	public static int cntCrescente(int n){
-		// Conta o tamanho da maior sequencia crescente
+		// Conta o tamanho da maior sequencia crescente. O(n*n).
+		
+		int lis[] = new int[n];
 
-		int ret = 1, cnt = 1;
-		for (int i = 1; i <= n; i++){
+		for (int i = 0; i < n; i++)
+			lis[i] = 1;
 
-			if (i == n || permu[i] < permu[i-1]){
-				// Caso esteja no fim da array ou tenha encontrado um ponto decrescente
-				if (ret < cnt)
-					ret = cnt;
+		for (int i = 1; i < n; i++)
+			for (int j = 0; j < i; j++)
+				if (permu[i] > permu[j] && lis[j] >= lis[i])
+					lis[i] = lis[j] + 1;
 
-				cnt = 1;
-			}
-
-			else
-				cnt++;
-		}
-
+		int ret = 0;
+		for (int i = 0; i < n; i++)
+			if (lis[i] > ret)
+				ret = lis[i];
+ 		
 		return ret;
 	}
 
 	public static int cntDescrescente(int n){
-		// Conta o tamanho da maior sequencia decrescente
+		// Conta o tamanho da maior sequencia decrescente. O(n*n).
 
-		int ret = 1, cnt = 1;
-		for (int i = 1; i <= n; i++){
+		int lds[] = new int[n];
 
-			if (i == n || permu[i] > permu[i-1]){
-				// Caso esteja no fim da array ou tenha encontrado um ponto crescente
-				if (ret < cnt)
-					ret = cnt;
+		for (int i = 0; i < n; i++)
+			lds[i] = 1;
 
-				cnt = 1;
-			}
+		for (int i = 1; i < n; i++)
+			for (int j = 0; j < i; j++)
+				if (permu[i] < permu[j] && lds[j] >= lds[i])
+					lds[i] = lds[j] + 1;
 
-			else
-				cnt++;
-		}
-
+		int ret = 0;
+		for (int i = 0; i < n; i++)
+			if (lds[i] > ret)
+				ret = lds[i];
+ 		
 		return ret;
 	}
 
 	public static void imprime(int n){
 		// Imprime a permutação, transformando os inteiros em chars.
+
 		for (int i = 0; i < n; i++)
 			StdOut.printf("%c", permu[i] + 'a');
 		StdOut.println();
@@ -138,6 +148,7 @@ public class STPerms {
 
 	public static void proximaPermu(int n){
 		// Gera a proxima permutação seguindo a ordem lexicografica.
+
 		int i, j = -1;
 
 		for (i = n-2; i >= 0; i--)
@@ -170,21 +181,21 @@ public class STPerms {
 		// A execução termina quando ja se esta na ultima permutação, aque que é
 		// estritamente decrescente.
 
-		int cre = cntCrescente(n);
-		int decre = cntDescrescente(n);
+		while (true){
+			int cre = cntCrescente(n);
+			int decre = cntDescrescente(n);
 
-		if (cre <= s && decre <= t){
-			cnt++;
-			if (op != 1)
-				imprime(n);
+			if (cre <= s && decre <= t){
+				cnt++;
+				if (op != 1)
+					imprime(n);
+			}
+
+			if (isFinal(n)) 
+				return;
+
+			proximaPermu(n);
 		}
-
-		if (isFinal(n)) 
-			return;
-
-		proximaPermu(n);
-
-		gerador(n, s, t);
 	}
 	
 	public static void main(String[] args) {
@@ -196,7 +207,7 @@ public class STPerms {
 		}
 
 		permu = new int[n]; // Criando uma nova array com tamanho n
-		for (int i = 0; i < n; i++) // Populando a array
+		for (int i = 0; i < n; i++) // {0, 1, ..., n-1}
 			permu[i] = i;
 
 		gerador(n, s, t); 
@@ -205,4 +216,3 @@ public class STPerms {
 			StdOut.println(cnt);  
 	}
 }
-
