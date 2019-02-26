@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"per",
+				"permu"
+			],
+			[
+				"print",
+				"printf\t(Combinacao.java)"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"de",
+				"decre"
+			],
+			[
+				"prin",
+				"println\t(Combinacao.java)"
+			],
+			[
+				"pe",
+				"permu"
+			],
+			[
+				"cnt",
+				"cntCrescente"
+			],
+			[
 				"is",
 				"isEmpty"
 			],
@@ -288,10 +316,6 @@
 				"endl"
 			],
 			[
-				"cnt",
-				"cntc"
-			],
-			[
 				"m",
 				"map\tstd::map"
 			],
@@ -490,35 +514,29 @@
 			[
 				"pre",
 				"preOrder"
-			],
-			[
-				"node",
-				"nodeCnt"
-			],
-			[
-				"wid",
-				"width\tproperty"
-			],
-			[
-				"s",
-				"strong"
-			],
-			[
-				"docum",
-				"document\t(odometer.js)"
-			],
-			[
-				"odometer-the",
-				"odometer-theme-default\t(odometer-theme-default.css)"
-			],
-			[
-				"ba",
-				"background-image\tproperty"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "EP02/STPerms.java",
+			"settings":
+			{
+				"buffer_size": 5446,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "EP01/Combinacao.java",
+			"settings":
+			{
+				"buffer_size": 4239,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
 		{
 			"file": "Estrututras/Stack.java",
 			"settings":
@@ -529,60 +547,10 @@
 			}
 		},
 		{
-			"file": "EP01/Combinacao.java",
-			"settings":
-			{
-				"buffer_size": 3932,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/felipe/Geral/MaratonUSP/ToDo/d.cpp",
-			"settings":
-			{
-				"buffer_size": 675,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/felipe/Geral/MaratonUSP/ToDo/c.cpp",
-			"settings":
-			{
-				"buffer_size": 675,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/felipe/Geral/MaratonUSP/ToDo/b.cpp",
-			"settings":
-			{
-				"buffer_size": 675,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/felipe/Geral/MaratonUSP/ToDo/a.cpp",
-			"settings":
-			{
-				"buffer_size": 675,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "Estrututras/Bag.java",
 			"settings":
 			{
 				"buffer_size": 1179,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Aulas/aula0221.java",
-			"settings":
-			{
-				"buffer_size": 2009,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -702,11 +670,15 @@
 	[
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas",
-		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP01",
-		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Estrututras"
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP02"
 	],
 	"file_history":
 	[
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/aula0221.java",
+		"/media/felipe/Geral/MaratonUSP/ToDo/b.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/c.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/d.cpp",
+		"/media/felipe/Geral/MaratonUSP/ToDo/a.cpp",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/aula0219.java",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0218/aula0221.txt",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/aula21-02.java",
@@ -726,9 +698,7 @@
 		"/media/felipe/Geral/MaratonUSP/ToDo/t.txt",
 		"/media/felipe/Geral/MaratonUSP/ToDo/dominos.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/t.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/d.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/e.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/b.cpp",
 		"/media/felipe/Geral/MaratonUSP/Spoj/dquery.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/dquery.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/rangeSumQuery.cpp",
@@ -736,8 +706,6 @@
 		"/media/felipe/Geral/MaratonUSP/ToDo/liegesLegendre.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/playingStones.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/mcoins.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/c.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/a.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/f.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/galaticTaxes.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/trickOrTreat.cpp",
@@ -833,8 +801,7 @@
 		"/media/felipe/Geral/MaratonUSP/ToDo/dentista.cpp",
 		"/media/felipe/Geral/MaratonUSP/Spoj/kmedian.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/oracleAlexandria.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/riemannStrikes.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/helpRiemann.cpp"
+		"/media/felipe/Geral/MaratonUSP/ToDo/riemannStrikes.cpp"
 	],
 	"find":
 	{
@@ -875,11 +842,77 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "EP02/STPerms.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1605,
+								1605
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "EP01/Combinacao.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4239,
+								4239
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1092.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "Estrututras/Stack.java",
 					"semi_transient": false,
 					"settings":
@@ -901,65 +934,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 794.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "EP01/Combinacao.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3932,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2969,
-								2969
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/media/felipe/Geral/MaratonUSP/ToDo/d.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 675,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 639.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -967,90 +942,6 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/media/felipe/Geral/MaratonUSP/ToDo/c.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 675,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/media/felipe/Geral/MaratonUSP/ToDo/b.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 675,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/media/felipe/Geral/MaratonUSP/ToDo/a.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 675,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
 					"file": "Estrututras/Bag.java",
 					"semi_transient": false,
 					"settings":
@@ -1068,48 +959,14 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Java/Java.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 195.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 7,
-					"file": "Aulas/aula0221.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2009,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1710,
-								1710
-							]
-						],
-						"settings":
-						{
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 381.0,
+						"translation.y": 132.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1143,7 +1000,7 @@
 		"cols":
 		[
 			0.0,
-			0.897959183673,
+			0.583450061171,
 			1.0
 		],
 		"rows":
