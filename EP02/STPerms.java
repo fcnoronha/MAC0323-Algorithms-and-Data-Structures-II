@@ -23,24 +23,8 @@
 
 	Descrição de ajuda ou indicação de fonte:
 
-	1º: O algoritmo para a geração das proximas permutações foi ensinado
-	por um tutorial na plataforma GeeksForGeeks, com o link a seguir:
-	(geeksforgeeks.org/lexicographic-permutations-of-string/).
-		Aprendi este algoritmo estudando topicos á respeito de strings e 
-	permutações, para o grupo de extensão ao qual faço parte, o MaratonUSP.
-
-	2º: As funções cntCrescente() e cntDecrescente() são inspiradas no
-	algoritmo de LIS (Longest Increasing subsequence), que é muito usado
-	em programação competitiva.
-	
-	3º: A estruta base da função main() do programa toma como base o 
-	esqueleto disponibilizado para a realização do EP1.
-
 	Se for o caso, descreva a seguir 'bugs' e limitações do seu programa:
 
-	1º: A analise de complexidade de meu algoritmo mostra uma complexidade
-	em torno de O((n^2)*n!), logo, a partir de um n = 10, a execução do codigo
-	começa a demorar muito tempo.
 
 ****************************************************************/
 
@@ -73,146 +57,109 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class STPerms {
 
-	// Neste EP, ao inves de utilizar um String para representar as permutações, 
-	// usei uma array de inteiros, deixando o codigo mais claro e simples. Ao final, 
-	// quando necessario realizar a impressão de tal array, realizo a conversão de inteiro 
-	// para char.
+    public static int lis[]; // Armazena a maior sequencia crescente
+    public static int lds[]; // Armazena a maior sequencia descrescente
+    public static int s; // Limite para sequencia crescente
+    public static int t; // Limite para sequencia decrescente
 
-	private static int cnt = 0; // Contador para quantidade de permutações (s, t)
-	private static int op = 0; // 0 == permutações / 1 == quantidade / 2 == per+qtd
+    private static int cnt = 0; // Contador para quantidade de permutações (s, t)
+    private static int op = 0; // 0 == permutações / 1 == quantidade / 2 == per+qtd
 
-	private static int permu[]; // Armazena a permutação atual em forma de Int[]
+    public  static void gerador(String permu){
+        gerador("", permu); 
+    }
 
-	public static boolean isFinal(int n){
-		// Checa se ainda há permutações pra fazer. Utilizando a idea que a permutação
-		// final, em ordem lexicografica, é estritamente decrescrente.
+    private static void gerador(String prefix, String permu){
 
-		boolean flag = true;
+    	// Vai gerar todas as permutações das primeiras n letras do alfabeto,
+    	// contando a maior sequencia crescente (LIS) e a maior sequencia
+    	// descrescente (LDS) da permutação atual. Fazendo ações de acordo
+    	// com a operação inserida pelo usuario.
 
-		for (int i = 1; i < n; i++)
-			if (permu[i] > permu[i-1])
-				flag = false;
+        int n = permu.length();
 
-		return flag == true;
-	}
+        if (n == 0){
+           	// Caso em que tem-se uma permutação completa
 
-	public static int cntCrescente(int n){
-		// Conta o tamanho da maior sequencia crescente. O(n*n).
-		
-		int lis[] = new int[n];
+            int cre = 0;
+            int decre = 0;
 
-		for (int i = 0; i < n; i++)
-			lis[i] = 1;
+            // Achando maiores valores
+            for (int i = 0; i < prefix.length(); i++){
+                if(lis[i] > cre) cre = lis[i];
+                if(lds[i] > decre) decre = lds[i];
+            }
+            
+            // Checando se estas estão dentro dos limites
+            if (cre <= s && decre <= t){
+                cnt++;
+                if (op != 1)
+                    StdOut.println(prefix);
+            }
 
-		for (int i = 1; i < n; i++)
-			for (int j = 0; j < i; j++)
-				if (permu[i] > permu[j] && lis[j] >= lis[i])
-					lis[i] = lis[j] + 1;
+            return;
+        }
+        
+        for (int i = 0; i < n; i++){
+        	// Percorrendo todas as opções disponiveis de letras para a 
+        	// permutação atual, em ordem lexicografica.
 
-		int ret = 0;
-		for (int i = 0; i < n; i++)
-			if (lis[i] > ret)
-				ret = lis[i];
- 		
-		return ret;
-	}
+        	// Tamanho da permutação gerada ate este passo
+            int aux = prefix.length(); 
 
-	public static int cntDescrescente(int n){
-		// Conta o tamanho da maior sequencia decrescente. O(n*n).
+            // Por definição, o tamanho da LIS e LDS de um caractere é 1;
+            lis[aux] = 1;
+            lds[aux] = 1;
 
-		int lds[] = new int[n];
+            // Flag que sinaliza se devo gerar permutações a patir da atual
+            boolean contn = true; 
+            for (int j = aux-1; j >= 0; j--){
+            	// Percorrendo todo o prefixo
 
-		for (int i = 0; i < n; i++)
-			lds[i] = 1;
+                if (lis[j] > s || lds[j] > t){
+                	// Não se deve continuar, deadends
+                    contn = false;
+                    break;
+                }
 
-		for (int i = 1; i < n; i++)
-			for (int j = 0; j < i; j++)
-				if (permu[i] < permu[j] && lds[j] >= lds[i])
-					lds[i] = lds[j] + 1;
+                // Adicionando sequecia crescente
+                if (prefix.charAt(j) < permu.charAt(i))
+                    if (lis[j] >= lis[aux])
+                        lis[aux] = lis[j]+1;
 
-		int ret = 0;
-		for (int i = 0; i < n; i++)
-			if (lds[i] > ret)
-				ret = lds[i];
- 		
-		return ret;
-	}
+                // Adicionando sequencia descrescente
+                if (prefix.charAt(j) > permu.charAt(i))
+                    if (lds[j] >= lds[aux])
+                        lds[aux] = lds[j]+1;                
+                
+            }
 
-	public static void imprime(int n){
-		// Imprime a permutação, transformando os inteiros em chars.
+            if (!contn) continue;
 
-		for (int i = 0; i < n; i++)
-			StdOut.printf("%c", permu[i] + 'a');
-		StdOut.println();
-	}
+            // Continuando a execução com uma chamada recursiva
+            gerador(prefix + permu.charAt(i), permu.substring(0, i) + permu.substring(i+1, n));
+        }
+    }
 
-	public static void proximaPermu(int n){
-		// Gera a proxima permutação seguindo a ordem lexicografica.
+    public static void main(String[] args) {
 
-		int i, j = -1;
+        int n = Integer.parseInt(args[0]);
+        s = Integer.parseInt(args[1]);
+        t = Integer.parseInt(args[2]);
+        if (args.length == 4) {
+            op = Integer.parseInt(args[3]);
+        }
 
-		for (i = n-2; i >= 0; i--)
-			if (permu[i] < permu[i+1])
-				break;
+        // Construindo arrays
+        lis = new int[n];
+        lds = new int[n];
 
-		for (int k = i+1; k < n; k++)
-			if (j == -1 || (permu[k] < permu[j] && permu[k] > permu[i]))
-				j = k;
+        String alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        String in = alfabeto.substring(0, n);
+      
+        gerador(in); 
 
-		int aux = permu[j];
-		permu[j] = permu[i];
-		permu[i] = aux;
-		
-		i++;
-		j = n-1;
-		while (i < j){
-			aux = permu[j];
-			permu[j] = permu[i];
-			permu[i] = aux;
-			i++;
-			j--;
-		}
-	}
-
-	public static void gerador(int n, int s, int t){
-		// Confere a atual permutação, e se ela é um (s, t)-permutação.
-		// Caso ela seja, imprime esta permutação.
-		// Gera a proxima permutação em order lexicografica.
-		// A execução termina quando ja se esta na ultima permutação, aque que é
-		// estritamente decrescente.
-
-		while (true){
-			int cre = cntCrescente(n);
-			int decre = cntDescrescente(n);
-
-			if (cre <= s && decre <= t){
-				cnt++;
-				if (op != 1)
-					imprime(n);
-			}
-
-			if (isFinal(n)) 
-				return;
-
-			proximaPermu(n);
-		}
-	}
-	
-	public static void main(String[] args) {
-		int n = Integer.parseInt(args[0]);
-		int s = Integer.parseInt(args[1]);
-		int t = Integer.parseInt(args[2]);
-		if (args.length == 4) {
-			op = Integer.parseInt(args[3]);
-		}
-
-		permu = new int[n]; // Criando uma nova array com tamanho n
-		for (int i = 0; i < n; i++) // {0, 1, ..., n-1}
-			permu[i] = i;
-
-		gerador(n, s, t); 
-
-		if (op != 0)
-			StdOut.println(cnt);  
-	}
+        if (op != 0)
+            StdOut.println(cnt);  
+    }
 }

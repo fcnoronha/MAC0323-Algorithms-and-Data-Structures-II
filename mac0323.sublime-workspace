@@ -520,10 +520,46 @@
 	"buffers":
 	[
 		{
+			"file": "EP02/STPerms.java",
+			"settings":
+			{
+				"buffer_size": 5391,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Aulas/aula0228.java",
+			"settings":
+			{
+				"buffer_size": 648,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Estrututras/MaxHeap.java",
+			"settings":
+			{
+				"buffer_size": 26,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "EP02/STPermsV1.java",
+			"settings":
+			{
+				"buffer_size": 6079,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "Aulas/aula0226.java",
 			"settings":
 			{
-				"buffer_size": 309,
+				"buffer_size": 705,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -533,24 +569,6 @@
 			"settings":
 			{
 				"buffer_size": 688,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Aulas/aula0221.java",
-			"settings":
-			{
-				"buffer_size": 2009,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "EP02/STPerms.java",
-			"settings":
-			{
-				"buffer_size": 5528,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -627,6 +645,18 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
 				"p",
 				"Package Control: Install Package"
 			],
@@ -669,10 +699,6 @@
 			[
 				"paco",
 				"Package Control: Install Package"
-			],
-			[
-				"pack",
-				"Install Package Control"
 			]
 		],
 		"width": 416.0
@@ -697,10 +723,17 @@
 	[
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas",
-		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP02"
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP02",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Estrututras"
 	],
 	"file_history":
 	[
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP02/Permutations.java",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0218/aulas/aula0228.rb",
+		"/home/felipe/.cache/.fr-oadEuf/debian-binary",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/aula0228.java",
+		"/home/felipe/.config/sublime-text-3/Packages/User/MarkdownLivePreview.css",
+		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/README.md",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/QuickFind.java",
 		"/home/felipe/Área de Trabalho/EP02/STPerms.java",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/aula0221.java",
@@ -714,7 +747,6 @@
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/Aulas/Stack.java",
 		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/EP01/Combinacao.java",
 		"/media/felipe/Geral/Faculdade/git guide.txt",
-		"/media/felipe/Geral/Faculdade/3 semestre/MAC0323/README.md",
 		"/home/felipe/algs4.jar",
 		"/home/felipe/.bashrc",
 		"/media/felipe/Geral/Faculdade/3 semestre/EP01/Combinacao.java",
@@ -823,12 +855,7 @@
 		"/media/felipe/Geral/MaratonUSP/Caderno/Misc/fastExp.cpp",
 		"/media/felipe/Geral/MaratonUSP/Caderno/Misc/primes.cpp",
 		"/media/felipe/Geral/MaratonUSP/ToDo/somaCasas.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/ogros.cpp",
-		"/media/felipe/Geral/Faculdade/2 semestre/mac121/mergeSort.c",
-		"/media/felipe/Geral/MaratonUSP/ToDo/trocoFacil.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/fechadura.cpp",
-		"/media/felipe/Geral/MaratonUSP/ToDo/dentista.cpp",
-		"/media/felipe/Geral/MaratonUSP/Spoj/kmedian.cpp"
+		"/media/felipe/Geral/MaratonUSP/ToDo/ogros.cpp"
 	],
 	"find":
 	{
@@ -869,39 +896,166 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Aulas/aula0226.java",
+					"file": "EP02/STPerms.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 309,
+						"buffer_size": 5391,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								305,
-								305
+								4062,
+								4061
 							]
 						],
 						"settings":
 						{
+							"markdonw_live_preview_last_run": 1551566504.79,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1326.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Aulas/aula0228.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								644,
+								644
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1551566504.77,
 							"syntax": "Packages/Java/Java.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Estrututras/MaxHeap.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 26,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24,
+								24
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1551566504.78,
+							"syntax": "Packages/Java/Java.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "EP02/STPermsV1.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4948,
+								4948
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1551569260.34,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1872.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 4,
+					"file": "Aulas/aula0226.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 705,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								705,
+								705
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1551566504.74,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "Estrututras/UnionFind.java",
 					"semi_transient": false,
 					"settings":
@@ -919,34 +1073,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Java/Java.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Aulas/aula0221.java",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2009,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
+							"markdonw_live_preview_last_run": 1551566504.79,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
@@ -954,47 +1081,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "EP02/STPerms.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5528,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4491,
-								4491
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1521.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "EP01/Combinacao.java",
 					"semi_transient": false,
 					"settings":
@@ -1012,6 +1103,7 @@
 						],
 						"settings":
 						{
+							"markdonw_live_preview_last_run": 1551566504.79,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -1020,11 +1112,11 @@
 						"translation.y": 1092.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "Estrututras/Stack.java",
 					"semi_transient": false,
 					"settings":
@@ -1042,6 +1134,7 @@
 						],
 						"settings":
 						{
+							"markdonw_live_preview_last_run": 1551566504.79,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
@@ -1049,11 +1142,11 @@
 						"translation.y": 639.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "Estrututras/Bag.java",
 					"semi_transient": false,
 					"settings":
@@ -1071,6 +1164,7 @@
 						],
 						"settings":
 						{
+							"markdonw_live_preview_last_run": 1551566504.79,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
@@ -1078,7 +1172,7 @@
 						"translation.y": 132.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1112,7 +1206,7 @@
 		"cols":
 		[
 			0.0,
-			0.475717654568,
+			0.524370999485,
 			1.0
 		],
 		"rows":
