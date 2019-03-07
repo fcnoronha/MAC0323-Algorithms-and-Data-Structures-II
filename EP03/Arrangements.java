@@ -31,15 +31,13 @@
 
 ****************************************************************/
 
-// excessões pedidas
 import java.lang.IllegalArgumentException;
 import java.lang.UnsupportedOperationException;
 import java.util.NoSuchElementException;
 
-// pode ser útil
-import java.util.Arrays; // Arrays.sort(), Arrays.copyOf(), ...
+import java.util.Arrays;
 
-import java.util.Iterator; // passo 0 para criarmos um iterador
+import java.util.Iterator;
 
 import edu.princeton.cs.algs4.StdOut;
 
