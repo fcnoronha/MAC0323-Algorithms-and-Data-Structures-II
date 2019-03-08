@@ -1,3 +1,4 @@
+
 /****************************************************************
     Nome: Felipe Castro de Noronha
     NUSP: 10737032
@@ -57,9 +58,9 @@ public class Arrangements implements Iterable<String> {
         arj = new String(auxSort);
     }
 
-    // CONFIRMAR COM A MONITORA SE POSSE TER ISSO
     public Iterator<String> iterator() {
         // Metodo iterador
+
         return new ProximaPermutacao();
     }
 
@@ -69,24 +70,24 @@ public class Arrangements implements Iterable<String> {
         int cnt = 0; // Contador usado para ultima permutação
         String str = arj; // Copia da permutação original
 
-        public boolean hasNext(){
-			// Checa se existe uma proxima permutação, no caso, checa se
+        public boolean hasNext() {
+            // Checa se existe uma proxima permutação, no caso, checa se
             // a string esta em ordem decrescente.
 
             boolean ret = false;
             for (int i = 1; i < str.length(); i++)
-                if (str.charAt(i) > str.charAt(i-1))
+                if (str.charAt(i) > str.charAt(i - 1))
                     ret = true;
 
             // Faz com que a ultima permutação seja mostrada
-            if (ret == false && (cnt == 0 || cnt == 1)){
+            if (ret == false && (cnt == 0 || cnt == 1)) {
                 cnt += 1;
                 ret = true;
             }
             return ret;
-		}
+        }
 
-		public String next(){
+        public String next() {
 
             if (!hasNext())
                 throw new NoSuchElementException();
@@ -98,15 +99,16 @@ public class Arrangements implements Iterable<String> {
             // sua direita.
             int md;
             for (md = n - 2; md >= 0; md--)
-                if (aux[md] < aux[md+1])
+                if (aux[md] < aux[md + 1])
                     break;
 
             // Caso não haja uma proxima permutação.
-            if (md == -1) return str;
+            if (md == -1)
+                return str;
 
             // Achando o menor caracter maior e a direita de aux[md].
-            int mmd = md+1;
-            for (int i = md+1; i < n; i++)
+            int mmd = md + 1;
+            for (int i = md + 1; i < n; i++)
                 if (aux[i] > aux[md] && aux[i] < aux[mmd])
                     mmd = i;
 
@@ -116,17 +118,17 @@ public class Arrangements implements Iterable<String> {
             aux[md] = swap;
 
             // Ordenando a array a partir da posição md+1
-            Arrays.sort(aux, md+1, n);
+            Arrays.sort(aux, md + 1, n);
 
             // Retornando o antigo estado da permutação
             String ret = str;
             str = new String(aux);
             return ret;
-		}
+        }
 
-		public void remove(){
-			throw new UnsupportedOperationException();
-		}
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     // Unit test
@@ -145,7 +147,7 @@ public class Arrangements implements Iterable<String> {
 
         StdOut.println("Teste 2: imprime todos os arranjos");
         int i = 0;
-        for (String arranjo: arr) {
+        for (String arranjo : arr) {
             StdOut.println(i + " : " + arranjo);
             i++;
         }
