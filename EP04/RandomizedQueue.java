@@ -62,7 +62,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return size == 0;
     }
 
-    // return the number of items on the randomized queue
+    // Return the number of items on the randomized queue
     public int size() {
         return this.size;
     }
@@ -78,27 +78,37 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         head = add;
     }
 
-    // remove and return a random item
+    // Remove and return a random item
     public Item dequeue() {
 
         if (size == 0)
             throw new NoSuchElementException();
 
-        size--;
         // Generate random number [0, size[
         int until = StdRandom.uniform(size);
 
+        size--;
+
+        // Head were choosen
+        if (until == 0) {
+            Item ret = head.item;
+            head = head.next;
+
+            return ret;
+        }
+
         Node walk = head;
-        for (int i = 0; i < until; i++)
+        for (int i = 0; i < until - 1; i++)
             walk = walk.next;
 
         Item ret = walk.next.item;
+        // Connecting
         walk.next = walk.next.next;
 
         return ret;
     }
 
-    // return a random item (but do not remove it)
+    // Return a random item (but do not remove it)
     public Item sample() {
 
         if (size == 0)
@@ -108,23 +118,24 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         int until = StdRandom.uniform(size);
 
         Node walk = head, aux;
-        for (int i = 0; i <= until; i++)
+        for (int i = 0; i < until; i++)
             walk = walk.next;
 
         return walk.item;
     }
 
-    // return an independent iterator over items in random order
+    // Return an independent iterator over items in random order
     public Iterator<Item> iterator() {
         return new RQIterator();
     }
 
     private class RQIterator implements Iterator<Item> {
 
-        Node current = head;
+        int cnt = size;
+        int[] untils = null;
 
         public boolean hasNext() {
-            return (current != null);
+            return (cnt > 0);
         }
 
         public Item next() {
@@ -132,9 +143,27 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             if (!hasNext())
                 throw new NoSuchElementException();
 
-            Item ret = current.item;
-            current = current.next;
-            return ret;
+            if (untils == null) {
+                // Creates array that will store the random order for
+                // visiting each block of linked list
+
+                untils = new int[size];
+                for (int i = 0; i < size; i++)
+                    untils[i] = i;
+
+                StdRandom.shuffle(untils);
+            }
+
+            // Wich block is the actual for visiting
+            int actu = untils[cnt - 1];
+            cnt--;
+
+            // visiting it
+            Node walk = head, aux;
+            for (int i = 0; i < actu; i++)
+                walk = walk.next;
+
+            return walk.item;
         }
 
         public void remove() {
@@ -142,13 +171,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
     }
 
-    // unit testing (required)
+    // Unit testing (required)
     public static void main(String[] args) {
 
         // javac-algs4 RandomizedQueue.java && java-algs4 RandomizedQueue
-
-        // Fazer iterator ser aleatorio
-        // Resolver erro quando percorro a ll
 
         RandomizedQueue<Integer> teste = new RandomizedQueue<Integer>();
 
@@ -156,7 +182,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
                 + "'SP' - Mostra um valor aleatorio;\n" + "'P' - Printa todos os elementos;\n"
                 + "'0' - Finaliza unit test.\n" + "OS VALORES INSERIDOS DEVEM SER INTEIROS.\n");
 
-        // Userr iterative test
+        // User iterative test
         while (true) {
             String op = StdIn.readString();
 
