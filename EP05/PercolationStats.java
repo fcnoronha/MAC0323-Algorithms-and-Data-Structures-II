@@ -117,10 +117,10 @@ public class PercolationStats {
         PercolationStats pcs = new PercolationStats(n, t);
 
         // Printing stuff
-        StdOut.println("mean() = " + pcs.mean());
-        StdOut.println("stddev() = " + pcs.stddev());
-        StdOut.println("confidenceLow() = " + pcs.confidenceLow());
-        StdOut.println("confidenceHigh() = " + pcs.confidenceHigh());
-        StdOut.println("elapsed time = " + stw.elapsedTime());
+        StdOut.printf("mean() \t\t\t = %.6f\n", pcs.mean());
+        StdOut.printf("stddev() \t\t = %.6f\n",pcs.stddev());
+        StdOut.printf("confidenceLow() \t = %.6f\n", pcs.confidenceLow());
+        StdOut.printf("confidenceHigh() \t = %.6f\n", pcs.confidenceHigh());
+        StdOut.printf("elapsed time \t\t = %.3f\n", stw.elapsedTime());
     }
 }
