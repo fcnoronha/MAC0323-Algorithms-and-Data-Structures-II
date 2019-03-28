@@ -70,11 +70,13 @@ public class PercolationStats {
                 if (pc.isOpen(row, col))
                     continue;
 
-                // Incraseing counter and opening it
-                cnt += 1.0;
+                // Opening it
                 pc.open(row, col);
             }
 
+            // Getting number of open sites
+            cnt = (double)pc.numberOfOpenSites();
+            
             // Storing
             ths[t] = cnt/(n*n);
         }

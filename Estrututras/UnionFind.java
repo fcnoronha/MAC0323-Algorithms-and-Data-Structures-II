@@ -6,7 +6,7 @@ public class UnionFind {
 	private int[] sz;
 	private int count;
 
-	public (int n){
+	public UnionFind(int n){
 		count = n;
 		id = new int[n];
 		sz = new int[n];
@@ -20,21 +20,21 @@ public class UnionFind {
 	public int count(){
 		return count;
 	}
-s
+
 	public boolean connected(int p, int q){
 		return find(p) == find(q);
 	}
 
 	public int find(int p){
 		while (p != id[p])
-			id[p] = id[id[p]]; 
+			id[p] = id[id[p]];
 			p = id[p];
 		return p;
 	}
 
 	public void union(int p, int q){
-		int p = find(p);
-		int q = find(q);
+		p = find(p);
+		q = find(q);
 
 		if (p == q) return;
 
@@ -49,5 +49,4 @@ s
 
 		count--;
 	}
-
 }

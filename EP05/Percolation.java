@@ -144,7 +144,7 @@ public class Percolation {
 
     // Returns the number of open sites
     public int numberOfOpenSites(){
-        return (ufp.count() - (maxn*maxn - cntOpen + auxB + auxT));
+        return cntOpen;
     }
 
     // Does the system percolate?
