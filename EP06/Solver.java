@@ -36,7 +36,7 @@ import java.util.Iterator;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 
 public class Solver {
 
@@ -48,7 +48,7 @@ public class Solver {
         http://www.cs.princeton.edu/courses/archive/spring19/cos226/assignments/8puzzle/specification.php
     */
 
-    private Queue<Board> ans; // Queue that store the boards antil resulition
+    private SearchNode ans; // Queue that store the boards antil resulition
     private int nMoves; // Numbem of moves needed to solve
 
     // Find a solution to the initial board (using the A* algorithm)
@@ -60,7 +60,6 @@ public class Solver {
 
         // Minimal priority queue used in A* seach
         MinPQ<SearchNode> pq = new MinPQ<SearchNode>();
-        ans = new Queue<Board>();
 
         // Initial SearchNode, with initial board, 0 moves and null preview board
         SearchNode sn = new SearchNode(initial, 0, null);
@@ -72,12 +71,11 @@ public class Solver {
             // Getting Minimal element from PQ
             SearchNode aux = pq.min();
             pq.delMin();
-            // Storing it in ans queue
-            ans.enqueue(aux.crt());
 
             // If i'm in a solution
             if (aux.crt().isGoal()){
                 nMoves = aux.nm();
+                ans = aux;
                 break;
             }
 
@@ -85,10 +83,10 @@ public class Solver {
             for (Board u : aux.crt().neighboors()){
 
                 // Optimization
-                if (u.equals(aux.prv())) continue;
+                if (aux.prv() != null && u.equals(aux.prv().crt())) continue;
 
                 // Initializing seach node that will be stored in PQ
-                SearchNode ist = new SearchNode(u, aux.nm()+1, aux.crt());
+                SearchNode ist = new SearchNode(u, aux.nm()+1, aux);
                 pq.insert(ist);
             }
         }
@@ -99,10 +97,10 @@ public class Solver {
 
         private Board current; // Current board of this node
         private int numberMoves; // Number of moves until now
-        private Board prev; // Board from with this node come from
+        private SearchNode prev; // Board from with this node come from
 
         // Constructor
-        public SearchNode(Board c, int n, Board p) {
+        public SearchNode(Board c, int n, SearchNode p) {
 
             current = c;
             numberMoves = n;
@@ -125,7 +123,7 @@ public class Solver {
         }
 
         // Return current board
-        public Board prv() {
+        public SearchNode prv() {
             return prev;
         }
 
@@ -142,9 +140,18 @@ public class Solver {
 
     // Sequence of boards in a shortest solution
     public Iterable<Board> solution() {
-        return ans;
-    }
 
+        Stack<Board> s = new Stack<Board>();
+        SearchNode aux = ans;
+
+        // Going back in through solutions
+        while (aux != null){
+            s.push(aux.crt());
+            aux = aux.prv();
+        }
+
+        return s;
+    }
 
     // Test client (see below)
     public static void main(String[] args) {
