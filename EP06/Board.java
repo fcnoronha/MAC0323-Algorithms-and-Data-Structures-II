@@ -38,7 +38,6 @@ import java.util.NoSuchElementException;
 import java.util.Iterator;
 
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.Queue;
 
 public class Board {
@@ -107,10 +106,6 @@ public class Board {
 
         private int goalRow;
         private int goalCol;
-
-        public GoalPos() {
-
-        }
 
         // Set goals positions for this node
         public void setPos(int row, int col) {
@@ -284,8 +279,8 @@ public class Board {
     private class ic {
 
         // Arrays to help
-        int aux[] = new int[n*n];
-        int arr[] = new int[n*n];
+        int aux[] = new int[n*n-1];
+        int arr[] = new int[n*n-1];
 
         // Constructor method
         public ic () {
@@ -308,7 +303,7 @@ public class Board {
         // Return inversion count
         public int count(){
 
-            return _mergeSort(arr, aux, 0, n*n-1);
+            return _mergeSort(arr, aux, 0, n*n-2);
 
         }
 
@@ -374,25 +369,34 @@ public class Board {
 
         // javac-algs4 Board.java && java-algs4 Board
 
+        // Auxiliar matrix that I set for the board (will be passed as parameter)
         int[][] aux = {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}};
 
+        // Creating a new board
         Board b = new Board(aux);
 
-        StdOut.println(b.toString());
-        StdOut.println(b.hamming());
-        StdOut.println(b.manhattan());
+        // Printing stuff
+        StdOut.println("\n-------------\nMeu tabuleiro: \n" + b.toString() + "\n");
+        StdOut.println("Tile na posição 1-1: " + b.tileAt(1, 1) + "\n");
+        StdOut.println("Tamanho do board: " + b.size() + "\n");
+        StdOut.println("Distancia hamming: " + b.hamming() + "\n");
+        StdOut.println("Distancia manhattan: " + b.manhattan() + "\n");
+        StdOut.println("É o tabuleiro ganhador? " + b.isGoal() + "\n");
 
+        // Creating test matrix
         int[][] teste = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
 
-        StdOut.println(b.equals(teste));
-        StdOut.println(b.equals(aux));
+        StdOut.println("O tabuleiro parece com a matriz {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}}? " +
+            b.equals(teste) + "\n");
+        StdOut.println("O tabeleiro parece com a matriz {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}}? " +
+            b.equals(aux) + "\n");
 
+        // Iterating through neighboors boards
+        StdOut.println("Tabuleiros vizihos:");
         for (Board u : b.neighboors()){
             StdOut.println(u.toString());
         }
 
-        StdOut.println(b.isSolvable());
+        StdOut.println("O tabuleiro é soluvel? " + b.isSolvable());
     }
 }
-
-// COMENTAR UNIT TEST E PRINTAR OQ TA ACONTESSENO
