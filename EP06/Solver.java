@@ -80,7 +80,7 @@ public class Solver {
             }
 
             // Iterating through all possible moves from actual board
-            for (Board u : aux.crt().neighboors()){
+            for (Board u : aux.crt().neighbors()){
 
                 // Optimization
                 if (aux.prv() != null && u.equals(aux.prv().crt())) continue;

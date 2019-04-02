@@ -214,7 +214,7 @@ public class Board {
     }
 
 
-    public Iterable<Board> neighboors() {
+    public Iterable<Board> neighbors() {
 
         // New returnable object
         Queue<Board> ret = new Queue<>();
@@ -232,7 +232,7 @@ public class Board {
             }
         }
 
-        // Going through all possible neighboors
+        // Going through all possible neighbors
         for (int i = 0; i < 4; i++){
 
             // Copying original matrix
@@ -240,7 +240,7 @@ public class Board {
             for (int j = 0; j < n; j++)
                 aux[j] = tiles[j].clone();
 
-            // Getting neighboors postions
+            // Getting neighbors postions
             int rowPos = zeroPos[0] + dir[i][0];
             int colPos = zeroPos[1] + dir[i][1];
 
@@ -394,9 +394,9 @@ public class Board {
         StdOut.println("O tabeleiro parece com a matriz {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}}? " +
             b.equals(b) + "\n");
 
-        // Iterating through neighboors boards
+        // Iterating through neighbors boards
         StdOut.println("Tabuleiros vizihos:");
-        for (Board u : b.neighboors()){
+        for (Board u : b.neighbors()){
             StdOut.println(u.toString());
         }
 
