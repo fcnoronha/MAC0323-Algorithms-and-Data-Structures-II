@@ -193,20 +193,20 @@ public class Board {
             return false;
 
         // Checking if they are of the same type
-        if (y.getClass() != tiles.getClass())
+        if (y.getClass() != this.getClass())
             return false;
 
-        // Casting matrix 'cmp' from object 'y'
-        int[][] cmp = (int[][]) y;
+        // Casting new Board from 'y'
+        Board cmp = (Board) y;
 
         // Comparing if they have same size
-        if (tiles[0].length != cmp[0].length || tiles.length != cmp.length)
+        if (this.n != cmp.size())
                 return false;
 
         // Comparing each element
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
-                if (tiles[i][j] != cmp[i][j])
+                if (tiles[i][j] != cmp.tileAt(i, j))
                     return false;
 
         // Everything was fine, so they are equal
@@ -386,10 +386,13 @@ public class Board {
         // Creating test matrix
         int[][] teste = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
 
+        // Creating board for teste
+        Board t = new Board(teste);
+
         StdOut.println("O tabuleiro parece com a matriz {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}}? " +
-            b.equals(teste) + "\n");
+            b.equals(t) + "\n");
         StdOut.println("O tabeleiro parece com a matriz {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}}? " +
-            b.equals(aux) + "\n");
+            b.equals(b) + "\n");
 
         // Iterating through neighboors boards
         StdOut.println("Tabuleiros vizihos:");
