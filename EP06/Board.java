@@ -57,10 +57,12 @@ public class Board {
     public Board(int[][] tiles) {
 
         // Creating a copy of argumnt matrix
-        n = tiles[0].length;
+        n = tiles.length;
         this.tiles = new int[n][n];
         for (int  i = 0; i < n; i++)
-            this.tiles[i] = tiles[i].clone();
+            for (int j = 0; j < n; j++)
+                this.tiles[i][j] = tiles[i][j];
+            // this.tiles[i] = tiles[i].clone();
 
         // Setting goal values used in manhattan() and hamming()
         // gp[i] will store the goal (row, col) of the tile with number i
