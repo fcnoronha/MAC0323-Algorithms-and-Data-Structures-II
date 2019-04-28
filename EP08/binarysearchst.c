@@ -361,8 +361,8 @@ void* max(BinarySearchST st)
 int rank(BinarySearchST st, const void *key)
 {
     int lo = 0, hi = st->size-1;
-    if (isEmpty(st) || key == NULL)
-        return 0;
+    if (key == NULL)
+        return EXIT_FAILURE;
 
     while (lo <= hi) {
         int mid = lo + (hi - lo) / 2;
