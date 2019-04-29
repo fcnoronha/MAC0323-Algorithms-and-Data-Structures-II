@@ -42,6 +42,7 @@
  */
 #define RED   TRUE
 #define BLACK FALSE
+#define MX(x, y) ((x >= y)? (x): (y))
 
 /*----------------------------------------------------------*/
 /*
@@ -53,10 +54,12 @@ typedef struct node Node;
 struct redBlackST {
 
     Node *root; /* Root of RB-tree */
-    int size; /* Number of nodes */
 
     /* Function pointer to compare elements of the tree */
     int (*compar)(const void *key1, const void *key2);
+
+    /* Used for keys() */
+    int act_k;
 };
 
 /*----------------------------------------------------------*/
@@ -71,7 +74,7 @@ struct node {
     void *key;
 
     /* Size of generic data */
-    int v_size, k_size;
+    size_t v_size, k_size;
 
     /* Children */
     Node *left;
@@ -163,14 +166,47 @@ void flipColors(Node *h) {
     h->right->color = !h->right->color;
 }
 
+/* Just to say if a node is red */
 Bool isRed(Node *n) {
 
     if (n == NULL)
         return FALSE;
 
     return (n->color == RED);
-
 }
+
+/* If h is red, make h->left or one if its children red */
+Node *moveRedLeft(Node *h) {
+    flipColors(h);
+    if (isRed(h->right->left)) {
+        h->right = rotateRight(h->right);
+        h = rotateLeft(h);
+        flipColors(h);
+    }
+    return h;
+}
+
+/* If h is red, make h->right or one of its children red */
+Node *moveRedRight(Node *h) {
+    flipColors(h);
+    if (isRed(h->left->left)) {
+        h = rotateRight(h);
+        flipColors(h);
+    }
+    return h;
+}
+
+/* Restore RB tree invariant */
+Node *balance(Node *h) {
+
+    if (isRed(h->right)) h = rotateLeft(h);
+    if (isRed(h->left) && isRed(h->left->left)) h = rotateRight(h);
+    if (isRed(h->left) && isRed(h->right)) flipColors(h);
+
+    h->size = n_size(h->left) + n_size(h->right) + 1;
+    return h;
+}
+
 
 /*-----------------------------------------------------------*/
 /*
@@ -194,14 +230,26 @@ RedBlackST initST(int (*compar)(const void *key1, const void *key2))
 
     /* Allocating memory for the new RB-tree and init values */
     RedBlackST new = emalloc(sizeof(struct redBlackST));
-    new->size = 0;
     new->compar = compar;
     new->root = NULL;
+    new->act_k = 0;
 
     return new;
 }
 
-/*-----------------------------------------------------------*/
+/* Recursive call to freeST() */
+void r_free(Node *x) {
+
+    if (x == NULL)
+        return;
+
+    r_free(x->left);
+    r_free(x->right);
+    free(x->val);
+    free(x->key);
+    free(x);
+}
+
 /*
  *  freeST(ST)
  *
@@ -212,7 +260,8 @@ RedBlackST initST(int (*compar)(const void *key1, const void *key2))
 void freeST(RedBlackST st)
 {
 
-    /* Vou ter que fazer algo em pos-ordem */
+    r_free(st->root);
+    free(st);
 
 }
 
@@ -223,7 +272,40 @@ void freeST(RedBlackST st)
  * size() e isEmpty().
  */
 
-/*-----------------------------------------------------------*/
+
+ /* Recursive recursive call for put() */
+ Node *r_put(RedBlackST st, Node *act, Node *new) {
+
+     int cmp;
+
+     /* Just inserting new node, nothing else to do */
+     if (act == NULL)
+         return new;
+
+     /* Checking what i have to do */
+     cmp = st->compar(new->key, act->key);
+
+     if      (cmp < 0) act->left = r_put(st, act->left, new);
+     else if (cmp > 0) act->right = r_put(st, act->right, new);
+     else {
+
+         /* Updating value */
+         free(act->val);
+         act->val = new->val;
+         act->v_size = new->v_size;
+
+         /* Freeing unecessary copies */
+         free(new->key);
+         free(new);
+     }
+
+     if (isRed(act->right) && !isRed(act->left))       act = rotateLeft(act);
+     if (isRed(act->left)  &&  isRed(act->left->left)) act = rotateRight(act);
+     if (isRed(act->left)  &&  isRed(act->right))      flipColors(act);
+     act->size = n_size(act->left) + n_size(act->right) + 1;
+
+     return act;
+ }
 /*
  *  put(ST, KEY, NKEY, VAL, NVAL)
  *
@@ -241,53 +323,24 @@ void freeST(RedBlackST st)
  *  Para criar uma copia/clode de VAL é usado o seu número de bytes NVAL.
  *
  */
-
-Node *r_put(RedBlackST st, Node *act, Node *new) {
-
-    int cmp;
-
-    if (act == NULL)
-        return new;
-
-    cmp = st->compar(new->key, act->key);
-
-    if      (cmp < 0) act->left = r_put(st, act->left, new);
-    else if (cmp > 0) act->right = r_put(st, act->right, new);
-    else {
-
-        free(act->val);
-        act->val = new->val;
-        act->v_size = new->v_size;
-        free(new->key);
-        free(new);
-
-    }
-
-    if (isRed(act->right) && !isRed(act->left))  act = rotateLeft(act);
-    if (isRed(act->left)  &&  isRed(act->left->left)) act = rotateRight(act);
-    if (isRed(act->left)  &&  isRed(act->right))     flipColors(act);
-    act->size = n_size(act->left) + n_size(act->right) + 1;
-
-    return act;
-}
-
 void put(RedBlackST st, const void *key, size_t sizeKey, const void *val, size_t sizeVal)
 {
     void *auxk, *auxv;
     Node *new_node;
-    
+
     /* To be removed */
     if (val == NULL) {
         delete(st, key);
         return;
     }
 
+    /* Cloning key and val */
     auxk = emalloc(sizeKey);
     auxv = emalloc(sizeVal);
-
     memcpy(auxk, key, sizeKey);
     memcpy(auxv, val, sizeVal);
 
+    /* New node to be inserted in the tree */
     new_node = emalloc(sizeof(Node));
     new_node->val = auxv;
     new_node->key = auxk;
@@ -298,9 +351,9 @@ void put(RedBlackST st, const void *key, size_t sizeKey, const void *val, size_t
     new_node->color = RED;
     new_node->size = 1;
 
+    /* Calling the recursive function to put */
     st->root = r_put(st, st->root, new_node);
     st->root->color = BLACK;
-
 }
 
 
@@ -328,8 +381,8 @@ void *get(RedBlackST st, const void *key)
         int cmp = st->compar(key, aux->key);
 
         if      (cmp < 0) aux = aux->left;
-        else if (cmp > 0) aux = aux->left;
-        else    find = TRUE;
+        else if (cmp > 0) aux = aux->right;
+        else              find = TRUE;
     }
 
     if (!find)
@@ -354,10 +407,62 @@ void *get(RedBlackST st, const void *key)
  */
 Bool contains(RedBlackST st, const void *key)
 {
-    return (get(st, key) != NULL);
+    void *aux = get(st, key);
+
+    if (aux != NULL){
+        free(aux);
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
-/*-----------------------------------------------------------*/
+
+/* Returns pointer to minimal node */
+Node *n_min(Node *x) {
+
+    if (x->left == NULL)
+        return x;
+
+    return n_min(x->left);
+}
+Node *r_dm(Node*);
+/* Recursive call for delete() */
+Node *r_delete(RedBlackST st, const void *key, Node *h) {
+
+    if (st->compar(key, h->key) < 0) {
+        if (!isRed(h->left) && ! isRed(h->left->left))
+            h = moveRedLeft(h);
+        h->left = r_delete(st, key, h->left);
+    }
+
+    else {
+        if (isRed(h->left))
+            h = rotateRight(h);
+        if (st->compar(key, h->key) == 0 && (h->right) == NULL){
+            free(h->key);
+            free(h->val);
+            free(h);
+            return NULL;
+        }
+        if (!isRed(h->right) && !isRed(h->right->left))
+            h = moveRedRight(h);
+        if (st->compar(key, h->key) == 0) {
+
+            Node *x = n_min(h->right);
+            free(h->val); free(h->key);
+            h->val = x->val; h->v_size = x->v_size;
+            h->key = x->key; h->k_size = x->k_size;
+            /* For them not to be freed */
+            x->val = NULL; x->key = NULL;
+
+            h->right = r_dm(h->right);
+        }
+        else
+            h->right = r_delete(st, key, h->right);
+    }
+    return balance(h);
+}
 /*
  *  DELETE(ST, KEY)
  *
@@ -367,9 +472,18 @@ Bool contains(RedBlackST st, const void *key)
  *  Se KEY não está em ST, faz nada.
  *
  */
-void
-delete(RedBlackST st, const void *key)
+void delete(RedBlackST st, const void *key)
 {
+
+    if (!contains(st, key))
+        return;
+
+    if (!isRed(st->root->left) && !isRed(st->root->right))
+        st->root->color = RED;
+
+    st->root = r_delete(st, key, st->root);
+    if (size(st)) st->root->color = BLACK;
+
 }
 
 
@@ -384,7 +498,8 @@ delete(RedBlackST st, const void *key)
  */
 int size(RedBlackST st)
 {
-    return st->size;
+    if (st == NULL || st->root == NULL) return 0;
+    return st->root->size;
 }
 
 
@@ -399,7 +514,7 @@ int size(RedBlackST st)
  */
 Bool isEmpty(RedBlackST st)
 {
-    return (st->size == 0);
+    return (size(st) == 0);
 }
 
 /*------------------------------------------------------------*/
@@ -441,8 +556,8 @@ void *min(RedBlackST st)
         return NULL;
 
     /* Cloning */
-    ans = emalloc(aux->v_size);
-    memcpy(ans, aux->val, aux->v_size);
+    ans = emalloc(aux->k_size);
+    memcpy(ans, aux->key, aux->k_size);
 
     return ans;
 }
@@ -470,7 +585,7 @@ void *max(RedBlackST st)
 
         /* Going to the left to the tree */
         if (aux->right != NULL)
-            aux = aux->left;
+            aux = aux->right;
 
         /* Already on minimal */
         else
@@ -481,14 +596,25 @@ void *max(RedBlackST st)
         return NULL;
 
     /* Cloning */
-    ans = emalloc(aux->v_size);
-    memcpy(ans, aux->val, aux->v_size);
+    ans = emalloc(aux->k_size);
+    memcpy(ans, aux->key, aux->k_size);
 
     return ans;
 }
 
+/* Recursive call for rank() */
+int r_rank(RedBlackST st, const void *key, Node *x) {
 
-/*-----------------------------------------------------------*/
+    int cmp;
+
+    if (x == NULL) return 0;
+
+    cmp = st->compar(key, x->key);
+
+    if (cmp < 0) return r_rank(st, key, x->left);
+    if (cmp > 0) return 1 + n_size(x->left) + r_rank(st, key, x->right);
+    return n_size(x->left);
+}
 /*
  *  RANK(ST, KEY)
  *
@@ -498,14 +624,26 @@ void *max(RedBlackST st)
  *  Se ST está vazia RETORNA NULL.
  *
  */
-int
-rank(RedBlackST st, const void *key)
+int rank(RedBlackST st, const void *key)
 {
-    return 0;
+    return r_rank(st, key, st->root);
 }
 
 
-/*-----------------------------------------------------------*/
+/* Recursive call for select */
+void *r_select(Node *x, int k) {
+
+    void *aux;
+
+    int t = n_size(x->left);
+    if (t > k) return r_select(x->left, k);
+    if (t < k) return r_select(x->right, k-t-1);
+
+    aux = malloc(x->k_size);
+    memcpy(aux, x->key, x->k_size);
+
+    return aux;
+}
 /*
  *  SELECT(ST, K)
  *
@@ -515,14 +653,30 @@ rank(RedBlackST st, const void *key)
  *  Se ST não tem K+1 elementos RETORNA NULL.
  *
  */
-void *
-select(RedBlackST st, int k)
+void *select(RedBlackST st, int k)
 {
-    return NULL;
+    if (k < 0 || k >= size(st))
+        return NULL;
+
+    return r_select(st->root, k);
 }
 
+/* Recursive call for deleteMin() */
+Node *r_dm(Node *h) {
 
-/*-----------------------------------------------------------*/
+    if (h->left == NULL) {
+        free(h->val);
+        free(h->key);
+        free(h);
+        return NULL;
+    }
+
+    if (!isRed(h->left) && !isRed(h->left->left))
+        h = moveRedLeft(h);
+
+    h->left = r_dm(h->left);
+    return balance(h);
+}
 /*
  *  deleteMIN(ST)
  *
@@ -532,13 +686,35 @@ select(RedBlackST st, int k)
  *  Se ST está vazia, faz nada.
  *
  */
-void
-deleteMin(RedBlackST st)
+void deleteMin(RedBlackST st)
 {
+    if (!isRed(st->root->left) && !isRed(st->root->right))
+        st->root->color = RED;
+
+    st->root = r_dm(st->root);
+    if (size(st)) st->root->color = BLACK;
 }
 
 
-/*-----------------------------------------------------------*/
+/* Recursive call for deleteMax() */
+Node *r_dmx(Node *h) {
+
+    if (isRed(h->left))
+        h = rotateRight(h);
+
+    if (h->right == NULL) {
+        free(h->val);
+        free(h->key);
+        free(h);
+        return NULL;
+    }
+
+    if (!isRed(h->right) && !isRed(h->right->left))
+        h = moveRedRight(h);
+
+    h->right = r_dmx(h->right);
+    return balance(h);
+}
 /*
  *  deleteMAX(ST)
  *
@@ -548,9 +724,13 @@ deleteMin(RedBlackST st)
  *  Se ST está vazia, faz nada.
  *
  */
-void
-deleteMax(RedBlackST st)
+void deleteMax(RedBlackST st)
 {
+    if (!isRed(st->root->left) && !isRed(st->root->right))
+        st->root->color = RED;
+
+    st->root = r_dmx(st->root);
+    if (size(st)) st->root->color = BLACK;
 }
 
 
@@ -568,10 +748,20 @@ deleteMax(RedBlackST st)
  *  indefinido.
  *
  */
-void *
-keys(RedBlackST st, Bool init)
+void *keys(RedBlackST st, Bool init)
 {
-    return NULL;
+    if (st == NULL || size(st) == st->act_k) {
+        st->act_k = 0;
+        return NULL;
+    }
+
+    if (init) {
+        st->act_k = 1;
+        return select(st, 0);
+    }
+
+    st->act_k++;
+    return select(st, st->act_k - 1);
 }
 
 
@@ -585,6 +775,12 @@ keys(RedBlackST st, Bool init)
  *  Utility functions.
  ***************************************************************************/
 
+/* Recursive call fo height() */
+int r_height(Node *x) {
+    if (x == NULL) return -1;
+    return (1 + MX(r_height(x->left), r_height(x->right)));
+}
+
 /*
  * HEIGHT(ST)
  *
@@ -592,10 +788,8 @@ keys(RedBlackST st, Bool init)
  * Uma BST com apenas um nó tem altura zero.
  *
  */
-int
-height(RedBlackST st)
-{
-        return 0;
+int height(RedBlackST st) {
+    return r_height(st->root);
 }
 
 
@@ -622,7 +816,15 @@ check(RedBlackST st)
     return isBST(st) && isSizeConsistent(st) && isRankConsistent(st) && is23(st) && isBalanced(st);
 }
 
+/* Recursive call for isBST() */
+static Bool r_isBST(RedBlackST st, Node *x, void *min, void *max) {
 
+    if (x == NULL) return TRUE;
+    if (min != NULL && st->compar(x->key, min) <= 0) return FALSE;
+    if (max != NULL && st->compar(x->key, max) >= 0) return FALSE;
+    return (r_isBST(st, x->left, min, x->key) && \
+            r_isBST(st, x->right, x->key, max));
+}
 /*
  * ISBST(ST)
  *
@@ -630,13 +832,18 @@ check(RedBlackST st)
  * RETORNA TRUE se a árvore é uma BST.
  *
  */
-static Bool
-isBST(RedBlackST st)
+static Bool isBST(RedBlackST st)
 {
-    return FALSE;
+    return r_isBST(st, st->root, NULL, NULL);
 }
 
 
+/* Recursive call for isSizeConsistent() */
+static Bool r_isc(Node *x) {
+    if (x == NULL) return TRUE;
+    if (x->size != (n_size(x->left) + n_size(x->right) + 1)) return FALSE;
+    return (r_isc(x->left) && r_isc(x->right));
+}
 /*
  *  ISSIZECONSISTENT(ST)
  *
@@ -644,10 +851,9 @@ isBST(RedBlackST st)
  *  vale que size(h) = 1 + size(h->left) + size(h->right) e
  *  FALSE em caso contrário.
  */
-static Bool
-isSizeConsistent(RedBlackST st)
+static Bool isSizeConsistent(RedBlackST st)
 {
-    return FALSE;
+    return r_isc(st->root);
 }
 
 
@@ -658,12 +864,47 @@ isSizeConsistent(RedBlackST st)
  *  select() são consistentes.
  */
 /* check that ranks are consistent */
-static Bool
-isRankConsistent(RedBlackST st)
+static Bool isRankConsistent(RedBlackST st)
 {
-    return FALSE;
+    void *aux, *auxx;
+    int i; /* GRRR IN C99 LANGUAGE */
+
+    for (i = 0; i < size(st); i++) {
+
+        aux = select(st, i);
+        if (i != rank(st, aux)){
+            free(aux);
+            return FALSE;
+        }
+
+        free(aux);
+    }
+
+    for (aux = keys(st, TRUE); aux; aux = keys(st, FALSE)) {
+
+        auxx = select(st, rank(st, aux));
+
+        if (st->compar(auxx, aux) != 0) {
+            free(auxx);
+            free(aux);
+            return FALSE;
+        }
+
+        free(auxx);
+        free(aux);
+    }
+
+    return TRUE;
 }
 
+/* Recursive call for is23() */
+static Bool r_is23(RedBlackST st, Node *x) {
+    if (x == NULL) return TRUE;
+    if (isRed(x->right)) return FALSE;
+    if (x != st->root && isRed(x) && isRed(x->left))
+        return FALSE;
+    return (r_is23(st, x->left) && r_is23(st, x->right));
+}
 /*
  *  IS23(ST)
  *
@@ -671,21 +912,35 @@ isRankConsistent(RedBlackST st)
  *  para a direta ou se ha dois links para esquerda seguidos RED
  *  Em caso contrário RETORNA TRUE (= a ST representa uma árvore 2-3).
  */
-static Bool
-is23(RedBlackST st)
+static Bool is23(RedBlackST st)
 {
-    return FALSE;
+    return r_is23(st, st->root);
 }
 
+/* Recursive call for isBalanced() */
+static Bool r_isBalanced(Node *x, int cnt_black) {
 
+    if (x == NULL) return (cnt_black == 0);
+    if (!isRed(x)) cnt_black--;
+    return (r_isBalanced(x->left, cnt_black) && r_isBalanced(x->right, cnt_black));
+
+}
 /*
  *  ISBALANCED(ST)
  *
  *  RECEBE uma RedBlackST ST e RETORNA TRUE se st satisfaz
  *  balanceamento negro perfeiro.
  */
-static Bool
-isBalanced(RedBlackST st)
+static Bool isBalanced(RedBlackST st)
 {
-    return FALSE;
+
+    int cnt_black = 0;
+    Node *aux = st->root;
+
+    while (aux != NULL) {
+        cnt_black += (!isRed(aux));
+        aux = aux->left;
+    }
+
+    return r_isBalanced(st->root, cnt_black);
 }
