@@ -147,21 +147,14 @@ Digraph newDigraph(int V) {
  */
 Digraph cloneDigraph(Digraph G) {
 
-    /* hehe */
-    Digraph g = G;
     int i, aux;
 
-    Digraph clone_d = newDigraph(g->V);
+    Digraph clone_d = newDigraph(vDigraph(G));
 
     /* Cloning adjacency list */
-    for (i = 0; i < g->V; ++i) {
-
-        aux = itens(g->adj[i], 1);
-        while (aux != -1) {
+    for (i = 0; i < vDigraph(G); ++i)
+        for (aux = adj(G, i, TRUE); aux >= 0; aux = adj(G, i, FALSE))
             addEdge(clone_d, i, aux);
-            aux = itens(g->adj[i], 0);
-        }
-    }
 
     return clone_d;
 }
@@ -178,21 +171,14 @@ Digraph cloneDigraph(Digraph G) {
  */
 Digraph reverseDigraph(Digraph G) {
 
-    /* hehe */
-    Digraph g = G;
     int i, aux;
 
-    Digraph clone_d = newDigraph(g->V);
+    Digraph clone_d = newDigraph(vDigraph(G));
 
     /* Cloning adjacency list */
-    for (i = 0; i < g->V; ++i) {
-
-        aux = itens(g->adj[i], 1);
-        while (aux != -1) {
+    for (i = 0; i < vDigraph(G); ++i)
+        for (aux = adj(G, i, TRUE); aux >= 0; aux = adj(G, i, FALSE))
             addEdge(clone_d, aux, i);
-            aux = itens(g->adj[i], 0);
-        }
-    }
 
     return clone_d;
 }
@@ -212,7 +198,6 @@ Digraph reverseDigraph(Digraph G) {
  */
 Digraph readDigraph(String nomeArq) {
 
-
     int e, i, u, v;
     char *aux;
     FILE *fptr;
@@ -224,13 +209,17 @@ Digraph readDigraph(String nomeArq) {
         exit(1);
     }
 
-    new = newDigraph(atoi(getLine(fptr)));
-    e = atoi(getLine(fptr));
+    aux = getLine(fptr);
+    new = newDigraph(atoi(aux));
+    free(aux);
+
+    aux = getLine(fptr);
+    e = atoi(aux);
+    free(aux);
 
     while (e--) {
 
         aux = getLine(fptr);
-        aux = copyString(aux);
 
         i = 0, u = 0, v = 0;
         while ( !isalnum(aux[i]) ) i++;
@@ -248,10 +237,10 @@ Digraph readDigraph(String nomeArq) {
         }
 
         addEdge(new, u, v);
+        free(aux);
     }
 
     fclose(fptr);
-
     return new;
 }
 
@@ -267,8 +256,9 @@ Digraph readDigraph(String nomeArq) {
 void freeDigraph(Digraph G) {
 
     int i;
-    for (i = 0; i < G->V; ++i)
+    for (i = 0; i < vDigraph(G); ++i)
         freeBag(G->adj[i]);
+    free(G->adj);
     free(G->in_degree);
 
     free(G);
@@ -293,6 +283,10 @@ void freeDigraph(Digraph G) {
  *
  */
 int vDigraph(Digraph G) {
+
+    if (G == NULL)
+        return 0;
+
     return G->V;
 }
 
@@ -304,6 +298,10 @@ int vDigraph(Digraph G) {
  *
  */
 int eDigraph(Digraph G) {
+
+    if (G == NULL)
+        return 0;
+
     return G->E;
 }
 
@@ -316,6 +314,7 @@ int eDigraph(Digraph G) {
  *
  */
 void addEdge(Digraph G, vertex v, vertex w) {
+
     add(G->adj[v], w);
     G->in_degree[w]++;
     G->E++;
@@ -380,39 +379,42 @@ int inDegree(Digraph G, vertex v) {
  */
 String toString(Digraph G) {
 
-    char *str, *aux;
-    int size_buffer, i, v, w;
+    char *str, aux[100];
+    int size_buffer, i, v = 0, w;
 
     /* Maximum size of string */
-    for (i = 0, size_buffer = 0; i < G->V; ++i)
+    for (i = 0, size_buffer = 0; i < vDigraph(G); ++i)
         size_buffer += size(G->adj[i]);
-    str = emalloc( size_buffer * 12 * sizeof(char));
-    aux = emalloc( 30 * sizeof(char));
+    str = emalloc( size_buffer*100*sizeof(char) + vDigraph(G)*100 + 100 );
 
     /* Used in transfomtion of int to char */
-    sprintf(aux, "%i", G->V);
-    strcat(str, copyString(aux));
-    strcat(str, copyString(" vertices, "));
-    sprintf(aux, "%i", G->E);
-    strcat(str, copyString(aux));
-    strcat(str, copyString(" edges \n"));
+    memset(str, 0, size_buffer*100*sizeof(char) + vDigraph(G)*100 + 100);
+    memset(aux, 0, 100*sizeof(char));
+
+    sprintf(aux, "%d", vDigraph(G));
+    strcat(str, aux);
+    strcat(str, " vertices, ");
+
+    memset(aux, 0, 100*sizeof(char));
+    sprintf(aux, "%d", eDigraph(G));
+    strcat(str, aux);
+    strcat(str, " edges \n");
 
     /* Adjacency list */
-    for (v = 0; v < G->V; ++v) {
+    for (v = 0; v < vDigraph(G); ++v) {
 
-        sprintf(aux, "%d", v);
-        strcat(str, copyString(aux));
-        strcat(str, copyString(": "));
+        memset(aux, 0, 100*sizeof(char));
+        sprintf(aux, "%d: ", v);
+        strcat(str, (aux));
 
-        w = itens(G->adj[v], 1);
-        while (w != -1) {
+        for (w = adj(G, v, TRUE); w >= 0; w = adj(G, v, FALSE)) {
+            memset(aux, 0, 100*sizeof(char));
             sprintf(aux, "%d", w);
-            strcat(str, copyString(aux));
-            strcat(str, copyString(" "));
-            w = itens(G->adj[v], 0);
+            strcat(str, (aux));
+            strcat(str, (" "));
         }
 
-        strcat(str, copyString("\n"));
+        strcat(str, ("\n"));
     }
 
     return str;

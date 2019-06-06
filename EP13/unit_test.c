@@ -62,7 +62,6 @@ main(int argc, char *argv[])
     /*---------------------------------------*/
     printf("-----\nteste clone()\n");
     cloneK2   = cloneDigraph(K2);
-    freeDigraph(cloneK2);
 
     /* libere área alocadas para digrafos */
     freeDigraph(K1); /* freeDigraph() */
@@ -89,6 +88,7 @@ main(int argc, char *argv[])
     /*---------------------------------------*/
     printf("-----\nteste reverseDigraph()\n");
     reverseK2 = reverseDigraph(cloneK2);
+    freeDigraph(cloneK2);
     s = toString(reverseK2);
     V = vDigraph(reverseK2);
     E = eDigraph(reverseK2);
@@ -105,13 +105,12 @@ main(int argc, char *argv[])
     freeDigraph(tinyDG);
 
     mediumDG = readDigraph("mediumDG.txt");
-    printf("mediumDG: %d vertices, %d edges\n", vDigraph(mediumDG), eDigraph(mediumDG));
+    printf("mediusDG: %d vertices, %d edges\n", vDigraph(mediumDG), eDigraph(mediumDG));
     freeDigraph(mediumDG);
 
-    /*largeDG  = readDigraph("largeDG.txt");
+    largeDG  = readDigraph("largeDG.txt");
     printf("largeDG: %d vertices, %d edges\n", vDigraph(largeDG), eDigraph(largeDG));
     freeDigraph(largeDG);
-    */
 
     return EXIT_SUCCESS;
 }
