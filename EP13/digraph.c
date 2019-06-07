@@ -79,7 +79,7 @@
 #include <stdio.h>   /* fopen(), fclose(), fscanf(), ... */
 #include <stdlib.h>  /* free() */
 #include <string.h>  /* memcpy() */
-#include <ctype.h>  /* islnum() */
+#include <ctype.h>   /* islnum() */
 #include "util.h"    /* emalloc(), ecalloc() */
 
 #undef DEBUG
@@ -217,24 +217,23 @@ Digraph readDigraph(String nomeArq) {
     e = atoi(aux);
     free(aux);
 
+    /* Getting both numbers representation */
     while (e--) {
 
         aux = getLine(fptr);
 
         i = 0, u = 0, v = 0;
-        while ( !isalnum(aux[i]) ) i++;
-
-        while ( isalnum(aux[i]) ){
-            u = (u*10) + (aux[i]-48);
+        while ( !isalnum(aux[i]) )
             i++;
-        }
 
-        while ( !isalnum(aux[i]) ) i++;
+        while ( isalnum(aux[i]) )
+            u = (u*10) + (aux[i++]-48);
 
-        while ( aux[i] != EOF && isalnum(aux[i]) ){
-            v = (v*10) + (aux[i]-48);
+        while ( !isalnum(aux[i]) )
             i++;
-        }
+
+        while ( aux[i] != EOF && isalnum(aux[i]) )
+            v = (v*10) + (aux[i++]-48);
 
         addEdge(new, u, v);
         free(aux);
@@ -391,14 +390,12 @@ String toString(Digraph G) {
     memset(str, 0, size_buffer*100*sizeof(char) + vDigraph(G)*100 + 100);
     memset(aux, 0, 100*sizeof(char));
 
-    sprintf(aux, "%d", vDigraph(G));
+    sprintf(aux, "%d vertices, ", vDigraph(G));
     strcat(str, aux);
-    strcat(str, " vertices, ");
 
     memset(aux, 0, 100*sizeof(char));
-    sprintf(aux, "%d", eDigraph(G));
+    sprintf(aux, "%d edges \n", eDigraph(G));
     strcat(str, aux);
-    strcat(str, " edges \n");
 
     /* Adjacency list */
     for (v = 0; v < vDigraph(G); ++v) {
@@ -409,9 +406,8 @@ String toString(Digraph G) {
 
         for (w = adj(G, v, TRUE); w >= 0; w = adj(G, v, FALSE)) {
             memset(aux, 0, 100*sizeof(char));
-            sprintf(aux, "%d", w);
+            sprintf(aux, "%d ", w);
             strcat(str, (aux));
-            strcat(str, (" "));
         }
 
         strcat(str, ("\n"));
