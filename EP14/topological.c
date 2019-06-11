@@ -142,7 +142,7 @@ void dfs(Digraph G, Topological ts, vertex v);
  */
 Topological newTopological(Digraph G)
 {
-    int v, size_v;
+    int v, i, size_v;
     Bag aux;
 
     /* To be returned */
@@ -151,7 +151,7 @@ Topological newTopological(Digraph G)
     /* Initializing values */
     size_v = sizeof(int) * vDigraph(G);
     top->is_dag = FALSE;
-    top->top_order = newBag();
+    top->top_order = NULL;
     top->pre_order = newBag();
     top->pos_order = newBag();
     top->cycle_order = NULL;
@@ -170,7 +170,7 @@ Topological newTopological(Digraph G)
     top->pos_counter = 0;
 
     for (v = 0; v < vDigraph(G); v++)
-        if (!top->marked[v] && top->cycle_order == NULL)
+        if (!top->marked[v])
             dfs(G, top, v);
 
     top->is_dag = (top->cycle_order == NULL);
@@ -189,8 +189,13 @@ Topological newTopological(Digraph G)
     aux = newBag();
     for (v = itens(top->pos_order, TRUE); v >= 0; v = itens(top->pos_order, FALSE))
         add(aux, v);
-    freeBag(top->pos_order);
+    top->top_order = top->pos_order;
     top->pos_order = aux;
+
+    /* Topological sort rank */
+    i = 0;
+    for (v = itens(top->top_order, TRUE); v >= 0; v = itens(top->top_order, FALSE))
+        top->top_rank[v] = i++;
 
     return top;
 }
@@ -205,6 +210,18 @@ Topological newTopological(Digraph G)
  */
 void freeTopological(Topological ts)
 {
+
+    freeBag(ts->top_order);
+    freeBag(ts->pre_order);
+    freeBag(ts->pos_order);
+    if (ts->cycle_order != NULL)
+        freeBag(ts->cycle_order);
+
+    free(ts->top_rank);
+    free(ts->pre_rank);
+    free(ts->pos_rank);
+
+    free(ts);
 }
 
 /*------------------------------------------------------------*/
@@ -386,18 +403,18 @@ void dfs(Digraph G, Topological ts, vertex v) {
     for (w = adj(G, v, TRUE); w >= 0; w = adj(G, v, FALSE)) {
 
 
-        /* short circuit if directed cycle found */
-        if (ts->cycle_order != NULL) continue;
+        /* short circuit if directed cycle found
+        if (ts->cycle_order != NULL) continue;*/
 
         /* Found new vertex, so recur */
-        else if (!ts->marked[w]) {
+        if (!ts->marked[w]) {
 
             ts->edge_to[w] = v;
             dfs(G, ts, w);
         }
 
         /* Trace back directed cycle */
-        else if (ts->on_stack[w]) {
+        else if (ts->on_stack[w] && ts->cycle_order == NULL) {
             ts->cycle_order = newBag();
             for (x = v; x != w; x = ts->edge_to[x])
                 add(ts->cycle_order, x);
