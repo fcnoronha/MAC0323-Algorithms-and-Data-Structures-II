@@ -113,6 +113,14 @@ struct topological
     int *top_rank; /* top_rank[v] = rank of vertex v in order */
     int *pre_rank; /* pre_rank[v] = rank of vertex v in pre-order */
     int *pos_rank; /* pos_rank[v] = rank of vertex v in pos-order */
+
+    int *on_stack; /* onStack[v] = is vertex on the stack? */
+    int *marked; /* marked[v] = has vertex v been marked? */
+    int *edge_to; /* edgeTo[v] = previous vertex on path to v */
+
+    int pre_counter; /* Counter for pre-order */
+    int pos_counter; /* Counter for pos-order */
+
     Bool is_dag;
 };
 
@@ -121,6 +129,8 @@ struct topological
  * Protótipos de funções administrativas: tem modificador 'static'
  *
  */
+
+void dfs(Digraph G, Topological ts, vertex v);
 
 /*-----------------------------------------------------------*/
 /*
@@ -132,20 +142,55 @@ struct topological
  */
 Topological newTopological(Digraph G)
 {
+    int v, size_v;
+    Bag aux;
+
     /* To be returned */
     Topological top = emalloc(sizeof(struct topological));
 
     /* Initializing values */
+    size_v = sizeof(int) * vDigraph(G);
     top->is_dag = FALSE;
     top->top_order = newBag();
     top->pre_order = newBag();
     top->pos_order = newBag();
-    top->cycle_order = newBag();
-    top->top_rank = emalloc(sizeof(int) * vDigraph(G));
-    top->pre_rank = emalloc(sizeof(int) * vDigraph(G));
-    top->pos_rank = emalloc(sizeof(int) * vDigraph(G));
+    top->cycle_order = NULL;
+    top->top_rank = ecalloc(size_v, sizeof(int));
+    top->pre_rank = ecalloc(size_v, sizeof(int));
+    top->pos_rank = ecalloc(size_v, sizeof(int));
 
     /* Setting up values and making the magic happens */
+
+    /* DFS for cycle checking */
+    top->on_stack = ecalloc(size_v, sizeof(int));
+    top->marked = ecalloc(size_v, sizeof(int));
+    top->edge_to = ecalloc(size_v, sizeof(int));
+
+    top->pre_counter = 0;
+    top->pos_counter = 0;
+
+    for (v = 0; v < vDigraph(G); v++)
+        if (!top->marked[v] && top->cycle_order == NULL)
+            dfs(G, top, v);
+
+    top->is_dag = (top->cycle_order == NULL);
+
+    free(top->on_stack);
+    free(top->marked);
+    free(top->edge_to);
+
+    /* Rotating bags */
+    aux = newBag();
+    for (v = itens(top->pre_order, TRUE); v >= 0; v = itens(top->pre_order, FALSE))
+        add(aux, v);
+    freeBag(top->pre_order);
+    top->pre_order = aux;
+
+    aux = newBag();
+    for (v = itens(top->pos_order, TRUE); v >= 0; v = itens(top->pos_order, FALSE))
+        add(aux, v);
+    freeBag(top->pos_order);
+    top->pos_order = aux;
 
     return top;
 }
@@ -326,3 +371,44 @@ vertex cycle(Topological ts, Bool init)
  * Implementaçao de funções administrativas: têm o modificador
  * static.
  */
+
+void dfs(Digraph G, Topological ts, vertex v) {
+
+    vertex w, x;
+
+    ts->on_stack[v] = TRUE;
+    ts->marked[v] = TRUE;
+
+    /* Pre-order stuff */
+    ts->pre_rank[v] = ts->pre_counter++;
+    add(ts->pre_order, v);
+
+    for (w = adj(G, v, TRUE); w >= 0; w = adj(G, v, FALSE)) {
+
+
+        /* short circuit if directed cycle found */
+        if (ts->cycle_order != NULL) continue;
+
+        /* Found new vertex, so recur */
+        else if (!ts->marked[w]) {
+
+            ts->edge_to[w] = v;
+            dfs(G, ts, w);
+        }
+
+        /* Trace back directed cycle */
+        else if (ts->on_stack[w]) {
+            ts->cycle_order = newBag();
+            for (x = v; x != w; x = ts->edge_to[x])
+                add(ts->cycle_order, x);
+
+            add(ts->cycle_order, w);
+        }
+
+    }
+    ts->on_stack[v] = FALSE;
+
+    /* Pos-order stuff */
+    ts->pos_rank[v] = ts->pos_counter++;
+    add(ts->pos_order, v);
+}

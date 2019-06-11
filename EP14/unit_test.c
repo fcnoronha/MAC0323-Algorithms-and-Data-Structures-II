@@ -1,14 +1,14 @@
 /*
  * MAC0323 Algoritmos e Estruturas de Dados II
- * 
+ *
  * unit test para a ADT Topological
  *
  */
 /* representação topológica */
-#include "topological.h" /* isDag(), hasCycle(), 
-                          * pre(), post(), rank(), 
-                          * preorder(), postorder(), order(), 
-                          * cycle() 
+#include "topological.h" /* isDag(), hasCycle(),
+                          * pre(), post(), rank(),
+                          * preorder(), postorder(), order(),
+                          * cycle()
                           */
 #include "digraph.h"  /* newDigraph(), reverseDigraph(), freeDigraph(), vDigraph() */
 #include "util.h"     /* String */
@@ -27,26 +27,26 @@ pause();
 
 /* constantes */
 /* numero de testes */
-#define N      5  
+#define N      5
 
 #define ENTER '\n'
 
 /*---------------------------------------------------------------*/
-/* 
- *  M A I N 
+/*
+ *  M A I N
  */
-int 
+int
 main(int argc, char *argv[])
 {
     Digraph P2       = readDigraph("p2.txt");
     Topological tsP2 = newTopological(P2);
-    
+
     Digraph RP2       = reverseDigraph(P2);
     Topological tsRP2 = newTopological(RP2);
-        
+
     Digraph K4        = readDigraph("k4.txt");
     Topological tsK4  = newTopological(K4);
-    
+
     Digraph RK4       = reverseDigraph(K4);
     Topological tsRK4 = newTopological(RK4);
 
@@ -61,7 +61,7 @@ main(int argc, char *argv[])
 
     Digraph         G = readDigraph("g.txt");
     Topological   tsG = newTopological(G);
-    
+
     Digraph       tinyDG = readDigraph("tinyDG.txt");
     Topological tsTinyDG = newTopological(tinyDG);
 
@@ -71,7 +71,7 @@ main(int argc, char *argv[])
     Digraph       largeDG = readDigraph("largeDG.txt");
     Topological tsLargeDG = newTopological(largeDG);
     */
-    
+
     teste(P2,   tsP2,   "P2");
     teste(RP2, tsRP2,  "RP2");
     teste(K4,   tsK4,   "K4");
@@ -81,10 +81,10 @@ main(int argc, char *argv[])
     teste(HK5, tsHK5,  "HK5");
     teste(  G,   tsG,    "G");
     teste(tinyDG, tsTinyDG,  "tinyDG");
-    teste(mediumDG, tsMediumDG,  "mediumDG"); 
+    teste(mediumDG, tsMediumDG,  "mediumDG");
     /* teste(largeDG,   tsLargeDG,  "largeDG"); */
 
-    
+
     /* liberando memoria digrafos */
     freeDigraph(P2);
     freeDigraph(RP2);
@@ -110,14 +110,14 @@ main(int argc, char *argv[])
     freeTopological(tsTinyDG);
     freeTopological(tsMediumDG);
     /* freeTopological(tsLargeDG); */
-    
+
     return EXIT_SUCCESS;
 }
 
 /*------------------------------------------------*/
 /*
  * TESTE(G, NOME)
- * 
+ *
  * RECEBE um digrafo G, uma representacao topologica TS de G e o NOME do digrafo.
  * TESSTA as funções da ADT da representacao topologica TS.
  */
@@ -128,7 +128,7 @@ teste(Digraph G, Topological ts, String nome)
     vertex v;
     printf("\n========================================\n");
     printf("Iniciando testes com o digrafo %s:\n", nome);
-    
+
     /* mostre o digrafo */
     s = toString(G);
     printf("digrafo %s:\n%s", nome, s);
@@ -138,41 +138,41 @@ teste(Digraph G, Topological ts, String nome)
     printf("\n--------------\n");
     printf("   isDag(): %d\n", isDag(ts));
     printf("hasCycle(): %d\n", hasCycle(ts));
-    
+
     /*------------------------------------------*/
     /* mostre os resultados da funcoes que atribuem posições aos vértices */
     printf("\n--------------\n");
-    printf("   v   : "); 
+    printf("   v   : ");
     for (v = 0; v < vDigraph(G); v++) {
         printf("%2d ", v);
     }
     printf("\n");
 
     /*-----------------------------*/
-    printf(" pre(v): "); 
+    printf(" pre(v): ");
     for (v = 0; v < vDigraph(G); v++) {
         printf("%2d ", pre(ts, v));
     }
     printf("\n");
 
     /*-----------------------------*/
-    printf("post(v): "); 
+    printf("post(v): ");
     for (v = 0; v < vDigraph(G); v++) {
         printf("%2d ", post(ts, v));
     }
     printf("\n");
 
     /*-----------------------------*/
-    printf("rank(v): "); 
+    printf("rank(v): ");
     for (v = 0; v < vDigraph(G); v++) {
         printf("%2d ", rank(ts, v));
     }
     printf("\n");
-    
+
     /*------------------------------------------*/
     /* mostre os resultados da funcoes ordenam os vértices */
     printf("\n--------------");
-    
+
     /*-----------------------------*/
     printf("\n preorder(): ");
     for (v = preorder(ts, TRUE); v >= 0; v = preorder(ts, FALSE)) {
@@ -197,7 +197,7 @@ teste(Digraph G, Topological ts, String nome)
         printf("%2d ", v);
     }
     printf("\n");
-        
+
     printf("Testes encerrados \n");
     pause();
 }
