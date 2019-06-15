@@ -98,10 +98,9 @@ public class SeamCarver {
     // Energy of pixel at column x and row y
     public double energy (int x, int y) {
 
-        if (!isInside(x, y)) {
-            StdOut.println(y);
+        if (!isInside(x, y))
             throw new IllegalArgumentException("x-coordinate or y-coordinate outside its prescribed range.");
-        }
+
         return energy[x][y];
     }
 
@@ -140,7 +139,6 @@ public class SeamCarver {
             if (col == w-1 && val < lastVal) {
                 lastIndex = pq.minIndex();
                 lastVal = val;
-                break;
             }
 
             vis[col][lin] = true;
@@ -161,6 +159,12 @@ public class SeamCarver {
                 // Puting in pq
                 if (!pq.contains(index) && vis[auxc][auxl] == false){
                     pq.insert(index, newEne);
+                    pathTo[index] = lin*w + col;
+                }
+
+                // Updating value
+                else if (pq.contains(index) && newEne < pq.keyOf(index)) {
+                    pq.changeKey(index, newEne);
                     pathTo[index] = lin*w + col;
                 }
             }
@@ -214,7 +218,6 @@ public class SeamCarver {
             if (lin == h-1 && val < lastVal) {
                 lastIndex = pq.minIndex();
                 lastVal = val;
-                break;
             }
 
             vis[col][lin] = true;
@@ -235,6 +238,12 @@ public class SeamCarver {
                 // Puting in pq
                 if (!pq.contains(index) && vis[auxc][auxl] == false){
                     pq.insert(index, newEne);
+                    pathTo[index] = lin*w + col;
+                }
+
+                // Updating value
+                else if (pq.contains(index) && newEne < pq.keyOf(index)) {
+                    pq.changeKey(index, newEne);
                     pathTo[index] = lin*w + col;
                 }
             }
@@ -315,9 +324,9 @@ public class SeamCarver {
             throw new IllegalArgumentException("height = 1");
 
         for (int i = 0; i < h; i++) {
-            if (!isInside(seam[i], i)){
+            if (!isInside(seam[i], i))
                 throw new IllegalArgumentException("seam is invalid - 1");
-            }
+
 
             if (i < h-1 && Math.abs(seam[i] - seam[i+1]) > 1)
                 throw new IllegalArgumentException("seam is invalid - 2");
@@ -362,6 +371,6 @@ public class SeamCarver {
 
     // Unit testing (required)
     public static void main (String[] args) {
-
+        StdOut.println("oi");
     }
 }
